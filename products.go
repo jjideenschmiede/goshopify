@@ -11,30 +11,34 @@
 
 package goshopify
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
-// AddProductBody is to structure the product data
-type AddProductBody struct {
-	Product AddProductBodyProduct `json:"product"`
+// ProductBody is to structure the product data
+type ProductBody struct {
+	Product ProductBodyProduct `json:"product"`
 }
 
-type AddProductBodyProduct struct {
-	Title       string                   `json:"title"`
-	BodyHtml    string                   `json:"body_html"`
-	Vendor      string                   `json:"vendor"`
-	ProductType string                   `json:"product_type"`
-	Status      string                   `json:"status"`
-	Tags        string                   `json:"tags"`
-	Images      []AddProductBodyImages   `json:"images"`
-	Variants    []AddProductBodyVariants `json:"variants"`
-	Options     []AddProductBodyOptions  `json:"options"`
+type ProductBodyProduct struct {
+	Id          int                   `json:"id,omitempty"`
+	Title       string                `json:"title"`
+	BodyHtml    string                `json:"body_html"`
+	Vendor      string                `json:"vendor"`
+	ProductType string                `json:"product_type"`
+	Status      string                `json:"status"`
+	Tags        string                `json:"tags"`
+	Images      []ProductBodyImages   `json:"images"`
+	Variants    []ProductBodyVariants `json:"variants"`
+	Options     []ProductBodyOptions  `json:"options"`
 }
 
-type AddProductBodyImages struct {
+type ProductBodyImages struct {
 	Src string `json:"src"`
 }
 
-type AddProductBodyVariants struct {
+type ProductBodyVariants struct {
 	Title               string  `json:"title"`
 	Price               string  `json:"price"`
 	Sku                 string  `json:"sku"`
@@ -52,38 +56,38 @@ type AddProductBodyVariants struct {
 	RequiresShipping    bool    `json:"requires_shipping"`
 }
 
-type AddProductBodyOptions struct {
+type ProductBodyOptions struct {
 	Name   string   `json:"name"`
 	Values []string `json:"values"`
 }
 
-// AddProductReturn is to decode the json return
-type AddProductReturn struct {
-	Product AddProductReturnProduct `json:"product"`
+// ProductReturn is to decode the json return
+type ProductReturn struct {
+	Product ProductReturnProduct `json:"product"`
 }
 
-type AddProductReturnProduct struct {
-	Id                int                        `json:"id"`
-	Title             string                     `json:"title"`
-	BodyHtml          string                     `json:"body_html"`
-	Vendor            string                     `json:"vendor"`
-	ProductType       string                     `json:"product_type"`
-	CreatedAt         string                     `json:"created_at"`
-	Handle            string                     `json:"handle"`
-	UpdatedAt         string                     `json:"updated_at"`
-	PublishedAt       string                     `json:"published_at"`
-	TemplateSuffix    string                     `json:"template_suffix"`
-	Status            string                     `json:"status"`
-	PublishedScope    string                     `json:"published_scope"`
-	Tags              string                     `json:"tags"`
-	AdminGraphqlApiId string                     `json:"admin_graphql_api_id"`
-	Variants          []AddProductReturnVariants `json:"variants"`
-	Options           []AddProductReturnOptions  `json:"options"`
-	Images            []AddProductReturnImages   `json:"images"`
-	Image             AddProductReturnImage      `json:"image"`
+type ProductReturnProduct struct {
+	Id                int                     `json:"id"`
+	Title             string                  `json:"title"`
+	BodyHtml          string                  `json:"body_html"`
+	Vendor            string                  `json:"vendor"`
+	ProductType       string                  `json:"product_type"`
+	CreatedAt         string                  `json:"created_at"`
+	Handle            string                  `json:"handle"`
+	UpdatedAt         string                  `json:"updated_at"`
+	PublishedAt       string                  `json:"published_at"`
+	TemplateSuffix    string                  `json:"template_suffix"`
+	Status            string                  `json:"status"`
+	PublishedScope    string                  `json:"published_scope"`
+	Tags              string                  `json:"tags"`
+	AdminGraphqlApiId string                  `json:"admin_graphql_api_id"`
+	Variants          []ProductReturnVariants `json:"variants"`
+	Options           []ProductReturnOptions  `json:"options"`
+	Images            []ProductReturnImages   `json:"images"`
+	Image             ProductReturnImage      `json:"image"`
 }
 
-type AddProductReturnVariants struct {
+type ProductReturnVariants struct {
 	Id                   int     `json:"id"`
 	ProductId            int     `json:"product_id"`
 	Title                string  `json:"title"`
@@ -111,7 +115,7 @@ type AddProductReturnVariants struct {
 	AdminGraphqlApiId    string  `json:"admin_graphql_api_id"`
 }
 
-type AddProductReturnOptions struct {
+type ProductReturnOptions struct {
 	Id        int      `json:"id"`
 	ProductId int      `json:"product_id"`
 	Name      string   `json:"name"`
@@ -119,7 +123,7 @@ type AddProductReturnOptions struct {
 	Values    []string `json:"values"`
 }
 
-type AddProductReturnImages struct {
+type ProductReturnImages struct {
 	Id                int           `json:"id"`
 	ProductId         int           `json:"product_id"`
 	Position          int           `json:"position"`
@@ -133,7 +137,7 @@ type AddProductReturnImages struct {
 	AdminGraphqlApiId string        `json:"admin_graphql_api_id"`
 }
 
-type AddProductReturnImage struct {
+type ProductReturnImage struct {
 	Id                int           `json:"id"`
 	ProductId         int           `json:"product_id"`
 	Position          int           `json:"position"`
@@ -148,7 +152,7 @@ type AddProductReturnImage struct {
 }
 
 // AddProduct is to create a new single or variant product
-func AddProduct(body *AddProductBody, r *Request) (*AddProductReturn, error) {
+func AddProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
 
 	// Convert body
 	convert, err := json.Marshal(body)
@@ -169,7 +173,41 @@ func AddProduct(body *AddProductBody, r *Request) (*AddProductReturn, error) {
 	defer response.Body.Close()
 
 	// Decode data
-	var decode AddProductReturn
+	var decode ProductReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return nil, err
+	}
+
+	// Return data
+	return &decode, err
+
+}
+
+// UpdateProduct is to create a new single or variant product
+func UpdateProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
+
+	// Convert body
+	convert, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d.json", body.Product.Id), "PUT", convert}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return nil, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode ProductReturn
 
 	err = json.NewDecoder(response.Body).Decode(&decode)
 	if err != nil {
