@@ -48,6 +48,7 @@ body.Product.Variants = append(body.Product.Variants, goshopify.ProductBodyVaria
     Title:               "",
     Price:               "",
     Sku:                 "",
+    CompareAtPrice       "",
     FulfillmentService:  "",
     InventoryManagement: "",
     Option1:             "Default Title",
