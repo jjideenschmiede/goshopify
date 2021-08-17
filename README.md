@@ -96,6 +96,22 @@ if err != nil {
 }
 ```
 
+## Get list of products since id
+
+To get a list of orders, you can call the following function. The list shows all orders by a certain ID, if you leave this ID at 0, then the orders are displayed from the beginning. 200 orders are always read out at once.
+
+You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/orders/order).
+
+```go
+// Get order list after id (200 items)
+orders, err := Orders(0, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(orders)
+}
+```
+
 # Help
 
 For help or questions, please contact us directly [here](mailto:info@jj-development.de).
