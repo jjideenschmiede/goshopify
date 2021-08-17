@@ -104,7 +104,7 @@ You can find the description from Shopify [here](https://shopify.dev/api/admin/r
 
 ```go
 // Get order list after id (200 items)
-orders, err := Orders(0, r)
+orders, err := goshopify.Orders(0, r)
 if err != nil {
     fmt.Println(err)
 } else {
