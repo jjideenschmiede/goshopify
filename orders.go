@@ -22,43 +22,43 @@ type OrderReturn struct {
 }
 
 type OrderReturnOrders struct {
-	Id                       int                       `json:"id"`
-	AdminGraphqlApiId        string                    `json:"admin_graphql_api_id"`
-	AppId                    int                       `json:"app_id"`
-	BrowserIp                string                    `json:"browser_ip"`
-	BuyerAcceptsMarketing    bool                      `json:"buyer_accepts_marketing"`
-	CancelReason             interface{}               `json:"cancel_reason"`
-	CancelledAt              interface{}               `json:"cancelled_at"`
-	CartToken                string                    `json:"cart_token"`
-	CheckoutId               int                       `json:"checkout_id"`
-	CheckoutToken            string                    `json:"checkout_token"`
-	ClientDetails            OrderReturnClientDetails  `json:"client_details"`
-	ClosedAt                 interface{}               `json:"closed_at"`
-	Confirmed                bool                      `json:"confirmed"`
-	ContactEmail             string                    `json:"contact_email"`
-	CreateAt                 string                    `json:"create_at"`
-	Currency                 string                    `json:"currency"`
-	CurrentSubtotalPrice     string                    `json:"current_subtotal_price"`
-	CurrentSubtotalPriceSet  OrderReturnPriceSet       `json:"current_subtotal_price_set"`
-	CurrentTotalDiscounts    string                    `json:"current_total_discounts"`
-	CurrentTotalDiscountsSet OrderReturnPriceSet       `json:"current_total_discounts_set"`
-	CurrentTotalDutiesSet    interface{}               `json:"current_total_duties_set"`
-	CurrentTotalPrice        string                    `json:"current_total_price"`
-	CurrentTotalPriceSet     OrderReturnPriceSet       `json:"current_total_price_set"`
-	CurrentTotalTax          string                    `json:"current_total_tax"`
-	CurrentTotalTaxSet       OrderReturnPriceSet       `json:"current_total_tax_set"`
-	TotalTipReceived         string                    `json:"total_tip_received"`
-	TotalWeight              int                       `json:"total_weight"`
-	UpdatedAt                string                    `json:"updated_at"`
-	UserId                   interface{}               `json:"user_id"`
-	BillingAddress           OrderReturnBillingAddress `json:"billing_address"`
-	Customer                 OrderReturnCustomer       `json:"customer"`
-	DiscountApplications     []interface{}             `json:"discount_applications"`
-	Fulfillments             []interface{}             `json:"fulfillments"`
-	LineItems                []OrderReturnLineItems    `json:"line_items"`
-	PaymentDetails           OrderReturnPaymentDetails `json:"pament_details"`
-	Refunds                  []interface{}             `json:"refunds"`
-	ShippingLines            []interface{}             `json:"shipping_lines"`
+	Id                       int                        `json:"id"`
+	AdminGraphqlApiId        string                     `json:"admin_graphql_api_id"`
+	AppId                    int                        `json:"app_id"`
+	BrowserIp                string                     `json:"browser_ip"`
+	BuyerAcceptsMarketing    bool                       `json:"buyer_accepts_marketing"`
+	CancelReason             interface{}                `json:"cancel_reason"`
+	CancelledAt              interface{}                `json:"cancelled_at"`
+	CartToken                string                     `json:"cart_token"`
+	CheckoutId               int                        `json:"checkout_id"`
+	CheckoutToken            string                     `json:"checkout_token"`
+	ClientDetails            OrderReturnClientDetails   `json:"client_details"`
+	ClosedAt                 interface{}                `json:"closed_at"`
+	Confirmed                bool                       `json:"confirmed"`
+	ContactEmail             string                     `json:"contact_email"`
+	CreateAt                 string                     `json:"create_at"`
+	Currency                 string                     `json:"currency"`
+	CurrentSubtotalPrice     string                     `json:"current_subtotal_price"`
+	CurrentSubtotalPriceSet  OrderReturnPriceSet        `json:"current_subtotal_price_set"`
+	CurrentTotalDiscounts    string                     `json:"current_total_discounts"`
+	CurrentTotalDiscountsSet OrderReturnPriceSet        `json:"current_total_discounts_set"`
+	CurrentTotalDutiesSet    interface{}                `json:"current_total_duties_set"`
+	CurrentTotalPrice        string                     `json:"current_total_price"`
+	CurrentTotalPriceSet     OrderReturnPriceSet        `json:"current_total_price_set"`
+	CurrentTotalTax          string                     `json:"current_total_tax"`
+	CurrentTotalTaxSet       OrderReturnPriceSet        `json:"current_total_tax_set"`
+	TotalTipReceived         string                     `json:"total_tip_received"`
+	TotalWeight              int                        `json:"total_weight"`
+	UpdatedAt                string                     `json:"updated_at"`
+	UserId                   interface{}                `json:"user_id"`
+	BillingAddress           OrderReturnBillingAddress  `json:"billing_address"`
+	Customer                 OrderReturnCustomer        `json:"customer"`
+	DiscountApplications     []interface{}              `json:"discount_applications"`
+	Fulfillments             []interface{}              `json:"fulfillments"`
+	LineItems                []OrderReturnLineItems     `json:"line_items"`
+	PaymentDetails           OrderReturnPaymentDetails  `json:"pament_details"`
+	Refunds                  []interface{}              `json:"refunds"`
+	ShippingLines            []OrderReturnShippingLines `json:"shipping_lines"`
 }
 
 type OrderReturnClientDetails struct {
@@ -201,6 +201,22 @@ type OrderReturnPaymentDetails struct {
 	CvvResultCode     interface{} `json:"cvv_result_code"`
 	CreditCardNumber  string      `json:"credit_card_number"`
 	CreditCardCompany string      `json:"credit_card_company"`
+}
+
+type OrderReturnShippingLines struct {
+	Id                            int                   `json:"id"`
+	CarrierIdentifiert            interface{}           `json:"carrier_identifiert"`
+	Code                          string                `json:"code"`
+	DeliveryCategory              interface{}           `json:"delivery_category"`
+	DiscountedPrice               string                `json:"discounted_price"`
+	DiscountedPriceSet            OrderReturnPriceSet   `json:"discounted_price_set"`
+	Phone                         interface{}           `json:"phone"`
+	Price                         string                `json:"price"`
+	PriceSet                      OrderReturnPriceSet   `json:"price_set"`
+	RequestedFulfillmentServiceId interface{}           `json:"requested_fulfillment_service_id"`
+	Source                        string                `json:"source"`
+	Title                         string                `json:"title"`
+	TaxLines                      []OrderReturnTaxLines `json:"tax_lines"`
 }
 
 // Orders is to get a list of all orders since the id
