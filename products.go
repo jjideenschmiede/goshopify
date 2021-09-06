@@ -153,12 +153,12 @@ type ProductReturnImage struct {
 }
 
 // AddProduct is to create a new single or variant product
-func AddProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
+func AddProduct(body ProductBody, r Request) (ProductReturn, error) {
 
 	// Convert body
 	convert, err := json.Marshal(body)
 	if err != nil {
-		return nil, err
+		return ProductReturn{}, err
 	}
 
 	// Set config for new request
@@ -167,7 +167,7 @@ func AddProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
 	// Send request
 	response, err := c.Send(r)
 	if err != nil {
-		return nil, err
+		return ProductReturn{}, err
 	}
 
 	// Close request
@@ -178,21 +178,21 @@ func AddProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
 
 	err = json.NewDecoder(response.Body).Decode(&decode)
 	if err != nil {
-		return nil, err
+		return ProductReturn{}, err
 	}
 
 	// Return data
-	return &decode, err
+	return decode, err
 
 }
 
 // UpdateProduct is to create a new single or variant product
-func UpdateProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
+func UpdateProduct(body ProductBody, r Request) (ProductReturn, error) {
 
 	// Convert body
 	convert, err := json.Marshal(body)
 	if err != nil {
-		return nil, err
+		return ProductReturn{}, err
 	}
 
 	// Set config for new request
@@ -201,7 +201,7 @@ func UpdateProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
 	// Send request
 	response, err := c.Send(r)
 	if err != nil {
-		return nil, err
+		return ProductReturn{}, err
 	}
 
 	// Close request
@@ -212,10 +212,10 @@ func UpdateProduct(body *ProductBody, r *Request) (*ProductReturn, error) {
 
 	err = json.NewDecoder(response.Body).Decode(&decode)
 	if err != nil {
-		return nil, err
+		return ProductReturn{}, err
 	}
 
 	// Return data
-	return &decode, err
+	return decode, err
 
 }

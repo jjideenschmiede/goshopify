@@ -220,7 +220,7 @@ type OrderReturnShippingLines struct {
 }
 
 // Orders is to get a list of all orders since the id
-func Orders(id int, r *Request) (*OrderReturn, error) {
+func Orders(id int, r Request) (OrderReturn, error) {
 
 	// Set config for new request
 	c := Config{fmt.Sprintf("/orders.json?limit=200&since_id=%d", id), "GET", nil}
@@ -228,7 +228,7 @@ func Orders(id int, r *Request) (*OrderReturn, error) {
 	// Send request
 	response, err := c.Send(r)
 	if err != nil {
-		return nil, err
+		return OrderReturn{}, err
 	}
 
 	// Close request
@@ -239,10 +239,10 @@ func Orders(id int, r *Request) (*OrderReturn, error) {
 
 	err = json.NewDecoder(response.Body).Decode(&decode)
 	if err != nil {
-		return nil, err
+		return OrderReturn{}, err
 	}
 
 	// Return data
-	return &decode, err
+	return decode, err
 
 }
