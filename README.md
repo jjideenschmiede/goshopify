@@ -18,14 +18,14 @@ You can find the description from Shopify [here](https://shopify.dev/api/admin/r
 
 ```go
 // Define request
-r := &goshopify.Request{
+r := goshopify.Request{
     ApiKey:      "",
     ApiPassword: "",
     StoreName:   "",
 }
 
 // Define body
-body := &goshopify.ProductBody{
+body := goshopify.ProductBody{
     goshopify.ProductBodyProduct{
     	Id:          0,
         Title:       "",
