@@ -219,3 +219,23 @@ func UpdateProduct(body ProductBody, r Request) (ProductReturn, error) {
 	return decode, err
 
 }
+
+// DeleteProduct is to remove a product form shop
+func DeleteProduct(id int, r Request) error {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d.json", id), "DELETE", nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Return nothing
+	return nil
+
+}
