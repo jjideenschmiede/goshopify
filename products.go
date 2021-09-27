@@ -23,43 +23,43 @@ type ProductBody struct {
 
 type ProductBodyProduct struct {
 	Id          int                   `json:"id,omitempty"`
-	Title       string                `json:"title"`
-	BodyHtml    string                `json:"body_html"`
-	Vendor      string                `json:"vendor"`
-	ProductType string                `json:"product_type"`
-	Status      string                `json:"status"`
-	Tags        string                `json:"tags"`
-	Images      []ProductBodyImages   `json:"images"`
-	Variants    []ProductBodyVariants `json:"variants"`
-	Options     []ProductBodyOptions  `json:"options"`
+	Title       string                `json:"title,omitempty"`
+	BodyHtml    string                `json:"body_html,omitempty"`
+	Vendor      string                `json:"vendor,omitempty"`
+	ProductType string                `json:"product_type,omitempty"`
+	Status      string                `json:"status,omitempty"`
+	Tags        string                `json:"tags,omitempty"`
+	Images      []ProductBodyImages   `json:"images,omitempty"`
+	Variants    []ProductBodyVariants `json:"variant,omitempty"`
+	Options     []ProductBodyOptions  `json:"options,omitempty"`
 }
 
 type ProductBodyImages struct {
-	Src string `json:"src"`
+	Src string `json:"src,omitempty"`
 }
 
 type ProductBodyVariants struct {
-	Title               string  `json:"title"`
-	Price               string  `json:"price"`
-	Sku                 string  `json:"sku"`
-	CompareAtPrice      string  `json:"compare_at_price"`
-	FulfillmentService  string  `json:"fulfillment_service"`
-	InventoryManagement string  `json:"inventory_management"`
-	Option1             string  `json:"option1"`
-	Option2             string  `json:"option2"`
-	Option3             string  `json:"option3"`
-	Taxable             bool    `json:"taxable"`
-	Barcode             string  `json:"barcode"`
-	Grams               int     `json:"grams"`
-	Weight              float64 `json:"weight"`
-	WeightUnit          string  `json:"weight_unit"`
-	InventoryQuantity   int     `json:"inventory_quantity"`
-	RequiresShipping    bool    `json:"requires_shipping"`
+	Title               string  `json:"title,omitempty"`
+	Price               string  `json:"price,omitempty"`
+	Sku                 string  `json:"sku,omitempty"`
+	CompareAtPrice      string  `json:"compare_at_price,omitempty"`
+	FulfillmentService  string  `json:"fulfillment_service,omitempty"`
+	InventoryManagement string  `json:"inventory_management,omitempty"`
+	Option1             string  `json:"option1,omitempty"`
+	Option2             string  `json:"option2,omitempty"`
+	Option3             string  `json:"option3,omitempty"`
+	Taxable             bool    `json:"taxable,omitempty"`
+	Barcode             string  `json:"barcode,omitempty"`
+	Grams               int     `json:"grams,omitempty"`
+	Weight              float64 `json:"weight,omitempty"`
+	WeightUnit          string  `json:"weight_unit,omitempty"`
+	InventoryQuantity   int     `json:"inventory_quantity,omitempty"`
+	RequiresShipping    bool    `json:"requires_shipping,omitempty"`
 }
 
 type ProductBodyOptions struct {
-	Name   string   `json:"name"`
-	Values []string `json:"values"`
+	Name   string   `json:"name,omitempty"`
+	Values []string `json:"values,omitempty"`
 }
 
 // ProductReturn is to decode the json return
