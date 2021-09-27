@@ -112,6 +112,29 @@ if err != nil {
 }
 ```
 
+## Get a list of all product variants
+
+If you want to read out all variants of a product, you can do this as follows. Only the ID of the main product is required for this.
+
+You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/product-variant#[get]/admin/api/2021-07/products/{product_id}/variants.json).
+
+```go
+// Define request
+r := goshopify.Request{
+    ApiKey:      "",
+    ApiPassword: "",
+    StoreName:   "",
+}
+
+// Get all product variants
+productVariants, err := goshopify.ProductVariants(6917353078968, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(productVariants)
+}
+```
+
 ## Get list of orders since id
 
 To get a list of orders, you can call the following function. The list shows all orders by a certain ID, if you leave this ID at 0, then the orders are displayed from the beginning. 200 orders are always read out at once.
