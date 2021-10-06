@@ -152,6 +152,7 @@ r := goshopify.Request{
 // Define body
 body := ProductVariantBody{
     ProductVariantBodyVariant{
+        Id:                  6917353078,
         Title:               "Testartikel",
         Price:               "24,99",
         Sku:                 "21481462121",
@@ -197,6 +198,7 @@ r := goshopify.Request{
 // Define body
 body := ProductVariantBody{
     ProductVariantBodyVariant{
+        Id:                  6917353078968,
         Title:               "Testartikel",
         Price:               "24,99",
         Sku:                 "21481462121",
@@ -217,7 +219,7 @@ body := ProductVariantBody{
 }
 
 // Create a product variant
-variant, err := goshopify.AddProductVariant(6917353078968, body, r)
+variant, err := goshopify.AddProductVariant(body, r)
 if err != nil {
     fmt.Println(err)
 } else {
