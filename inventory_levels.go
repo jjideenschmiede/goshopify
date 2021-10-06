@@ -26,8 +26,8 @@ type InventoryLevelBody struct {
 // InventoryLevelReturn is to decode the json data
 type InventoryLevelReturn struct {
 	InventoryLevel struct {
-		InventoryItemId   int64     `json:"inventory_item_id"`
-		LocationId        int64     `json:"location_id"`
+		InventoryItemId   int       `json:"inventory_item_id"`
+		LocationId        int       `json:"location_id"`
 		Available         int       `json:"available"`
 		UpdatedAt         time.Time `json:"updated_at"`
 		AdminGraphqlApiId string    `json:"admin_graphql_api_id"`
