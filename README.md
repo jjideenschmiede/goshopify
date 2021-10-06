@@ -227,6 +227,27 @@ if err != nil {
 }
 ```
 
+## Get all inventory locations
+
+If you want to read out all inventory locations, you can do this with the following function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/inventorylevel#[post]/admin/api/2021-07/inventory_levels/adjust.json).
+
+```go
+// Define request
+r := goshopify.Request{
+    ApiKey:      "",
+    ApiPassword: "",
+    StoreName:   "",
+}
+
+// Get all inventory locations
+locations, err := goshopify.InventoryLocations(r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(locations)
+}
+```
+
 ## Get list of orders since id
 
 To get a list of orders, you can call the following function. The list shows all orders by a certain ID, if you leave this ID at 0, then the orders are displayed from the beginning. 200 orders are always read out at once.
