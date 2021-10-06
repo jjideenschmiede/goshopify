@@ -167,3 +167,37 @@ func AddProductVariant(id int, body ProductVariantBody, r Request) (ProductVaria
 	return decode, err
 
 }
+
+// UpdateProductVariant is to update an existing product variant
+func UpdateProductVariant(id int, body ProductVariantBody, r Request) (ProductVariantReturn, error) {
+
+	// Convert body
+	convert, err := json.Marshal(body)
+	if err != nil {
+		return ProductVariantReturn{}, err
+	}
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/variants/%d.json", id), "PUT", convert}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return ProductVariantReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode ProductVariantReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return ProductVariantReturn{}, err
+	}
+
+	// Return data
+	return decode, err
+
+}
