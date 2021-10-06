@@ -19,7 +19,7 @@ import (
 // InventoryLocationsReturn is to decode the json data
 type InventoryLocationsReturn struct {
 	Locations []struct {
-		Id                    int64       `json:"id"`
+		Id                    int         `json:"id"`
 		Name                  string      `json:"name"`
 		Address1              string      `json:"address1"`
 		Address2              interface{} `json:"address2"`
