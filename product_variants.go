@@ -23,7 +23,7 @@ type ProductVariantBody struct {
 }
 
 type ProductVariantBodyVariant struct {
-	Id                  string  `json:"id,omitempty"`
+	Id                  int     `json:"id,omitempty"`
 	Title               string  `json:"title,omitempty"`
 	Price               string  `json:"price,omitempty"`
 	Sku                 string  `json:"sku,omitempty"`
