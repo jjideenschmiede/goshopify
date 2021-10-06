@@ -135,7 +135,7 @@ func ProductVariants(id int, r Request) (ProductVariantsReturn, error) {
 }
 
 // AddProductVariant is to add a new variant to a product
-func AddProductVariant(id int, body ProductVariantBody, r Request) (ProductVariantReturn, error) {
+func AddProductVariant(body ProductVariantBody, r Request) (ProductVariantReturn, error) {
 
 	// Convert body
 	convert, err := json.Marshal(body)
@@ -144,7 +144,7 @@ func AddProductVariant(id int, body ProductVariantBody, r Request) (ProductVaria
 	}
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d/variants.json", id), "POST", convert}
+	c := Config{fmt.Sprintf("/products/%d/variants.json", body.Variant.Id), "POST", convert}
 
 	// Send request
 	response, err := c.Send(r)
@@ -169,7 +169,7 @@ func AddProductVariant(id int, body ProductVariantBody, r Request) (ProductVaria
 }
 
 // UpdateProductVariant is to update an existing product variant
-func UpdateProductVariant(id int, body ProductVariantBody, r Request) (ProductVariantReturn, error) {
+func UpdateProductVariant(body ProductVariantBody, r Request) (ProductVariantReturn, error) {
 
 	// Convert body
 	convert, err := json.Marshal(body)
@@ -178,7 +178,7 @@ func UpdateProductVariant(id int, body ProductVariantBody, r Request) (ProductVa
 	}
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/variants/%d.json", id), "PUT", convert}
+	c := Config{fmt.Sprintf("/variants/%d.json", body.Variant.Id), "PUT", convert}
 
 	// Send request
 	response, err := c.Send(r)
