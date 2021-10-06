@@ -229,7 +229,7 @@ if err != nil {
 
 ## Get all inventory locations
 
-If you want to read out all inventory locations, you can do this with the following function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/inventorylevel#[post]/admin/api/2021-07/inventory_levels/adjust.json).
+If you want to read out all inventory locations, you can do this with the following function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/location#[get]/admin/api/2021-07/locations.json).
 
 ```go
 // Define request
@@ -245,6 +245,34 @@ if err != nil {
     fmt.Println(err)
 } else {
     fmt.Println(locations)
+}
+```
+
+## Set an inventory level
+
+If you want to customize a pass, you can do so as follows. For this you need the Inventory Id and the Location Id of the product. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/inventorylevel#[post]/admin/api/2021-07/inventory_levels/set.json).
+
+```go
+// Define request
+r := goshopify.Request{
+    ApiKey:      "",
+    ApiPassword: "",
+    StoreName:   "",
+}
+
+// Define body
+body := goshopify.InventoryLevelBody{
+    LocationId:      62413209784,
+    InventoryItemId: 42744167694520,
+    Available:       24,
+}
+
+// Get all inventory locations
+inventory, err := goshopify.InventoryLevels(body, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(inventory)
 }
 ```
 
