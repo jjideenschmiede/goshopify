@@ -1,5 +1,7 @@
 # goshopify
 
+[![Go](https://github.com/jjideenschmiede/goshopify/actions/workflows/go.yml/badge.svg)](https://github.com/jjideenschmiede/goshopify/actions/workflows/go.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/jjideenschmiede/goshopify)](https://goreportcard.com/report/github.com/jjideenschmiede/goshopify) [![Go Reference](https://pkg.go.dev/badge/github.com/jjideenschmiede/goshopify.svg)](https://pkg.go.dev/github.com/jjideenschmiede/goshopify) 
+
 This library is currently far from finished. We will extend it when we need more endpoints for our projects. Feel free to add more endpoints as well.
 
 # Install
