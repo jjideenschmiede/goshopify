@@ -10,6 +10,27 @@ go get github.com/jjideenschmiede/goshopify
 
 # How to use?
 
+## Get a single product
+
+If you want to read out an individual product directly via the Id, you can do this using this function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/product#[get]/admin/api/2021-07/products/{product_id}.json).
+
+```go
+// Define request
+r := goshopify.Request{
+    ApiKey:      "",
+    ApiPassword: "",
+    StoreName:   "",
+}
+
+// Get a product by id
+product, err := goshopify.Product(6147990126757, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(product)
+}
+```
+
 ## Add a product
 
 With this function, you can add both simple and variant products. Here you can find an example of how to add a simple product. If it is to be a variant product, then variants are also added in the []ProductBodyVariants slice, but instead of using the Title option, another one such as size or color is used and the variants are assigned one of the values present in the option. **It is important that the Id in the ProductBodyProduct struct is 0.**
