@@ -111,6 +111,7 @@ type ProductReturnVariants struct {
 	Weight               float64 `json:"weight"`
 	WeightUnit           string  `json:"weight_unit"`
 	InventoryItemId      int     `json:"inventory_item_id"`
+	InventoryQuantity    int     `json:"inventory_quantity"`
 	OldInventoryQuantity int     `json:"old_inventory_quantity"`
 	RequiresShipping     bool    `json:"requires_shipping"`
 	AdminGraphqlApiId    string  `json:"admin_graphql_api_id"`
@@ -150,6 +151,34 @@ type ProductReturnImage struct {
 	Src               string        `json:"src"`
 	VariantsIds       []interface{} `json:"variants_ids"`
 	AdminGraphqlApiId string        `json:"admin_graphql_api_id"`
+}
+
+// Product is to get a product via id
+func Product(id int, r Request) (ProductReturn, error) {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d.json", id), "GET", nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return ProductReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode ProductReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return ProductReturn{}, err
+	}
+
+	// Return data
+	return decode, err
+
 }
 
 // AddProduct is to create a new single or variant product
