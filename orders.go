@@ -193,21 +193,21 @@ type OrderReturn struct {
 		UpdatedAt        time.Time   `json:"updated_at"`
 		UserId           interface{} `json:"user_id"`
 		BillingAddress   struct {
-			FirstName    string      `json:"first_name"`
-			Address1     string      `json:"address1"`
-			Phone        interface{} `json:"phone"`
-			City         string      `json:"city"`
-			Zip          string      `json:"zip"`
-			Province     interface{} `json:"province"`
-			Country      string      `json:"country"`
-			LastName     string      `json:"last_name"`
-			Address2     string      `json:"address2"`
-			Company      string      `json:"company"`
-			Latitude     float64     `json:"latitude"`
-			Longitude    float64     `json:"longitude"`
-			Name         string      `json:"name"`
-			CountryCode  string      `json:"country_code"`
-			ProvinceCode interface{} `json:"province_code"`
+			FirstName    string  `json:"first_name"`
+			Address1     string  `json:"address1"`
+			Phone        string  `json:"phone"`
+			City         string  `json:"city"`
+			Zip          string  `json:"zip"`
+			Province     string  `json:"province"`
+			Country      string  `json:"country"`
+			LastName     string  `json:"last_name"`
+			Address2     string  `json:"address2"`
+			Company      string  `json:"company"`
+			Latitude     float64 `json:"latitude"`
+			Longitude    float64 `json:"longitude"`
+			Name         string  `json:"name"`
+			CountryCode  string  `json:"country_code"`
+			ProvinceCode string  `json:"province_code"`
 		} `json:"billing_address"`
 		Customer struct {
 			Id                        int64         `json:"id"`
@@ -234,23 +234,23 @@ type OrderReturn struct {
 			TaxExemptions             []interface{} `json:"tax_exemptions"`
 			AdminGraphqlApiId         string        `json:"admin_graphql_api_id"`
 			DefaultAddress            struct {
-				Id           int64       `json:"id"`
-				CustomerId   int64       `json:"customer_id"`
-				FirstName    string      `json:"first_name"`
-				LastName     string      `json:"last_name"`
-				Company      string      `json:"company"`
-				Address1     string      `json:"address1"`
-				Address2     string      `json:"address2"`
-				City         string      `json:"city"`
-				Province     interface{} `json:"province"`
-				Country      string      `json:"country"`
-				Zip          string      `json:"zip"`
-				Phone        interface{} `json:"phone"`
-				Name         string      `json:"name"`
-				ProvinceCode interface{} `json:"province_code"`
-				CountryCode  string      `json:"country_code"`
-				CountryName  string      `json:"country_name"`
-				Default      bool        `json:"default"`
+				Id           int64  `json:"id"`
+				CustomerId   int64  `json:"customer_id"`
+				FirstName    string `json:"first_name"`
+				LastName     string `json:"last_name"`
+				Company      string `json:"company"`
+				Address1     string `json:"address1"`
+				Address2     string `json:"address2"`
+				City         string `json:"city"`
+				Province     string `json:"province"`
+				Country      string `json:"country"`
+				Zip          string `json:"zip"`
+				Phone        string `json:"phone"`
+				Name         string `json:"name"`
+				ProvinceCode string `json:"province_code"`
+				CountryCode  string `json:"country_code"`
+				CountryName  string `json:"country_name"`
+				Default      bool   `json:"default"`
 			} `json:"default_address"`
 		} `json:"customer"`
 		DiscountApplications []interface{} `json:"discount_applications"`
