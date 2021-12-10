@@ -27,7 +27,7 @@ type OrderReturn struct {
 		BuyerAcceptsMarketing bool        `json:"buyer_accepts_marketing"`
 		CancelReason          interface{} `json:"cancel_reason"`
 		CancelledAt           interface{} `json:"cancelled_at"`
-		CartToken             *string     `json:"cart_token"`
+		CartToken             string      `json:"cart_token"`
 		CheckoutId            int64       `json:"checkout_id"`
 		CheckoutToken         string      `json:"checkout_token"`
 		ClientDetails         struct {
@@ -202,7 +202,7 @@ type OrderReturn struct {
 			Country      string      `json:"country"`
 			LastName     string      `json:"last_name"`
 			Address2     string      `json:"address2"`
-			Company      *string     `json:"company"`
+			Company      string      `json:"company"`
 			Latitude     float64     `json:"latitude"`
 			Longitude    float64     `json:"longitude"`
 			Name         string      `json:"name"`
@@ -238,7 +238,7 @@ type OrderReturn struct {
 				CustomerId   int64       `json:"customer_id"`
 				FirstName    string      `json:"first_name"`
 				LastName     string      `json:"last_name"`
-				Company      *string     `json:"company"`
+				Company      string      `json:"company"`
 				Address1     string      `json:"address1"`
 				Address2     string      `json:"address2"`
 				City         string      `json:"city"`
@@ -323,7 +323,7 @@ type OrderReturn struct {
 			Country      string      `json:"country"`
 			LastName     string      `json:"last_name"`
 			Address2     string      `json:"address2"`
-			Company      *string     `json:"company"`
+			Company      string      `json:"company"`
 			Latitude     float64     `json:"latitude"`
 			Longitude    float64     `json:"longitude"`
 			Name         string      `json:"name"`
