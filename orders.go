@@ -304,13 +304,28 @@ type OrderReturn struct {
 					CurrencyCode string `json:"currency_code"`
 				} `json:"presentment_money"`
 			} `json:"total_discount_set"`
-			VariantId                  int64         `json:"variant_id"`
-			VariantInventoryManagement string        `json:"variant_inventory_management"`
-			VariantTitle               string        `json:"variant_title"`
-			Vendor                     string        `json:"vendor"`
-			TaxLines                   []interface{} `json:"tax_lines"`
-			Duties                     []interface{} `json:"duties"`
-			DiscountAllocations        []interface{} `json:"discount_allocations"`
+			VariantId                  int64  `json:"variant_id"`
+			VariantInventoryManagement string `json:"variant_inventory_management"`
+			VariantTitle               string `json:"variant_title"`
+			Vendor                     string `json:"vendor"`
+			TaxLines                   []struct {
+				ChannelLiable bool   `json:"channel_liable"`
+				Price         string `json:"price"`
+				PriceSet      struct {
+					ShopMoney struct {
+						Amount       string `json:"amount"`
+						CurrencyCode string `json:"currency_code"`
+					} `json:"shop_money"`
+					PresentmentMoney struct {
+						Amount       string `json:"amount"`
+						CurrencyCode string `json:"currency_code"`
+					} `json:"presentment_money"`
+				} `json:"price_set"`
+				Rate  float64 `json:"rate"`
+				Title string  `json:"title"`
+			} `json:"tax_lines"`
+			Duties              []interface{} `json:"duties"`
+			DiscountAllocations []interface{} `json:"discount_allocations"`
 		} `json:"line_items"`
 		Refunds         []interface{} `json:"refunds"`
 		ShippingAddress struct {
