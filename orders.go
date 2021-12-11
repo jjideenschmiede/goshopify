@@ -20,7 +20,7 @@ import (
 // OrderReturn is to decode the order return form shopify
 type OrderReturn struct {
 	Orders []struct {
-		Id                    int64       `json:"id"`
+		Id                    int         `json:"id"`
 		AdminGraphqlApiId     string      `json:"admin_graphql_api_id"`
 		AppId                 int         `json:"app_id"`
 		BrowserIp             string      `json:"browser_ip"`
