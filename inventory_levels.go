@@ -32,6 +32,7 @@ type InventoryLevelReturn struct {
 		UpdatedAt         time.Time `json:"updated_at"`
 		AdminGraphqlApiId string    `json:"admin_graphql_api_id"`
 	} `json:"inventory_level"`
+	Errors interface{} `json:"errors"`
 }
 
 // InventoryLevels is to get a list of all locations
