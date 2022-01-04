@@ -65,6 +65,7 @@ type ProductBodyOptions struct {
 // ProductReturn is to decode the json return
 type ProductReturn struct {
 	Product ProductReturnProduct `json:"product"`
+	Errors  string               `json:"errors,omitempty"`
 }
 
 type ProductReturnProduct struct {

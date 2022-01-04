@@ -104,6 +104,7 @@ type ProductVariantReturn struct {
 		RequiresShipping     bool      `json:"requires_shipping"`
 		AdminGraphqlApiId    string    `json:"admin_graphql_api_id"`
 	} `json:"variant"`
+	Errors string `json:"errors,omitempty"`
 }
 
 // ProductVariants is to get a list of all product variants
