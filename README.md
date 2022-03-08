@@ -315,6 +315,32 @@ if err != nil {
 }
 ```
 
+## Add fulfillment to order
+
+If the item has been shipped, the following function can be used to submit the tracking number, shipping provider and tracking link.
+
+You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-01/resources/fulfillment#post-orders-order-id-fulfillments).
+
+```go
+// Define fulfillment body
+body := FulfillmentBody{
+    Fulfillment: FulfillmentBodyFulfillment{
+        LocationId:      62413209784,
+        TrackingNumber:  "123456789010",
+        TrackingCompany: "fed ex",
+        TrackingUrl:     "https://test.de/tracking/123456789010",
+    },
+}
+
+// Add new fulfillment
+fulfillment, err := AddFulfillment(4344802345144, body, r)
+if err != nil {
+    log.Fatalln(err)
+} else {
+    log.Println(fulfillment)
+}
+```
+
 # Help
 
 For help or questions, please contact us directly [here](mailto:info@jj-development.de).
