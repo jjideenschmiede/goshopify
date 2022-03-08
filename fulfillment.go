@@ -23,7 +23,7 @@ type FulfillmentBody struct {
 }
 
 type FulfillmentBodyFulfillment struct {
-	LocationId      int64  `json:"location_id"`
+	LocationId      int    `json:"location_id"`
 	TrackingNumber  string `json:"tracking_number"`
 	TrackingCompany string `json:"tracking_company"`
 	TrackingUrl     string `json:"tracking_url"`
