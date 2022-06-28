@@ -377,7 +377,20 @@ type OrderReturn struct {
 			Source                        string        `json:"source"`
 			Title                         string        `json:"title"`
 			TaxLines                      []interface{} `json:"tax_lines"`
-			DiscountAllocations           []interface{} `json:"discount_allocations"`
+			DiscountAllocations           []struct {
+				Amount    string `json:"amount"`
+				AmountSet struct {
+					ShopMoney struct {
+						Amount       string `json:"amount"`
+						CurrencyCode string `json:"currency_code"`
+					} `json:"shop_money"`
+					PresentmentMoney struct {
+						Amount       string `json:"amount"`
+						CurrencyCode string `json:"currency_code"`
+					} `json:"presentment_money"`
+				} `json:"amount_set"`
+				DiscountApplicationIndex int `json:"discount_application_index"`
+			} `json:"discount_allocations"`
 		} `json:"shipping_lines"`
 		PaymentDetails struct {
 			CreditCardBin     string      `json:"credit_card_bin"`
