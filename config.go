@@ -19,7 +19,7 @@ import (
 const (
 	transferProtocol = "https://"
 	baseUrl          = ".myshopify.com/admin/api/"
-	apiVersion       = "2021-07"
+	apiVersion       = "2022-04"
 )
 
 // Config is to define config data
@@ -30,14 +30,14 @@ type Config struct {
 
 // Request is to define the request data
 type Request struct {
-	ApiKey, ApiPassword, StoreName string
+	StoreName, AccessToken string
 }
 
 // Send is to send a new request
 func (c Config) Send(r Request) (*http.Response, error) {
 
 	// Set url
-	url := transferProtocol + r.ApiKey + ":" + r.ApiPassword + "@" + r.StoreName + baseUrl + apiVersion + c.Path
+	url := transferProtocol + r.StoreName + baseUrl + apiVersion + c.Path
 
 	// Define client
 	client := &http.Client{}
@@ -50,6 +50,7 @@ func (c Config) Send(r Request) (*http.Response, error) {
 
 	// Define header
 	request.Header.Set("Content-Type", "application/json")
+	request.Header.Set("X-Shopify-Access-Token", r.AccessToken)
 
 	// Send request & get response
 	response, err := client.Do(request)
