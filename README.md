@@ -19,9 +19,8 @@ If you want to read out an individual product directly via the Id, you can do th
 ```go
 // Define request
 r := goshopify.Request{
-    ApiKey:      "",
-    ApiPassword: "",
     StoreName:   "",
+	AccessToken: "",
 }
 
 // Get a product by id
@@ -42,9 +41,8 @@ You can find the description from Shopify [here](https://shopify.dev/api/admin/r
 ```go
 // Define request
 r := goshopify.Request{
-    ApiKey:      "",
-    ApiPassword: "",
     StoreName:   "",
+    AccessToken: "",
 }
 
 // Define body
@@ -110,6 +108,12 @@ The only difference is that a different function must be called.
 You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/products/product).
 
 ```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
 // Add new product
 updateProduct, err := goshopify.UpdateProduct(body, r)
 if err != nil {
@@ -128,8 +132,14 @@ The ID of the product must also be specified. Please specify the request struct.
 You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/products/product#destroy-2022-04).
 
 ```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
 // Delete product
-err := DeleteProduct(6881118224568, r)
+err := goshopify.DeleteProduct(6881118224568, r)
 if err != nil {
 	fmt.Println(err)
 }
@@ -144,9 +154,8 @@ You can find the description from Shopify [here](https://shopify.dev/api/admin-r
 ```go
 // Define request
 r := goshopify.Request{
-    ApiKey:      "",
-    ApiPassword: "",
     StoreName:   "",
+    AccessToken: "",
 }
 
 // Get all product variants
@@ -213,9 +222,8 @@ You can find the description from Shopify [here](https://shopify.dev/api/admin-r
 ```go
 // Define request
 r := goshopify.Request{
-    ApiKey:      "",
-    ApiPassword: "",
     StoreName:   "",
+    AccessToken: "",
 }
 
 // Define body
@@ -257,9 +265,8 @@ If you want to read out all inventory locations, you can do this with the follow
 ```go
 // Define request
 r := goshopify.Request{
-    ApiKey:      "",
-    ApiPassword: "",
     StoreName:   "",
+    AccessToken: "",
 }
 
 // Get all inventory locations
@@ -278,9 +285,8 @@ If you want to customize a pass, you can do so as follows. For this you need the
 ```go
 // Define request
 r := goshopify.Request{
-    ApiKey:      "",
-    ApiPassword: "",
     StoreName:   "",
+    AccessToken: "",
 }
 
 // Define body
@@ -306,6 +312,12 @@ To get a list of orders, you can call the following function. The list shows all
 You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/orders/order).
 
 ```go
+// Define request
+r := goshopify.Request{
+	StoreName:   "",
+    AccessToken: "",
+}
+
 // Get order list after id (200 items)
 orders, err := goshopify.Orders(0, r)
 if err != nil {
@@ -322,6 +334,12 @@ If the item has been shipped, the following function can be used to submit the t
 You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-01/resources/fulfillment#post-orders-order-id-fulfillments).
 
 ```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
 // Define fulfillment body
 body := FulfillmentBody{
     Fulfillment: FulfillmentBodyFulfillment{
