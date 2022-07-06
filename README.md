@@ -14,7 +14,7 @@ go get github.com/jjideenschmiede/goshopify
 
 ## Get a single product
 
-If you want to read out an individual product directly via the Id, you can do this using this function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/product#[get]/admin/api/2021-07/products/{product_id}.json).
+If you want to read out an individual product directly via the Id, you can do this using this function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/product#[get]/admin/api/2022-04/products/{product_id}.json).
 
 ```go
 // Define request
@@ -125,7 +125,7 @@ If you want to remove a product, you can do this using the following function.
 
 The ID of the product must also be specified. Please specify the request struct.
 
-You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/products/product#destroy-2021-07).
+You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/products/product#destroy-2022-04).
 
 ```go
 // Delete product
@@ -139,7 +139,7 @@ if err != nil {
 
 If you want to read out all variants of a product, you can do this as follows. Only the ID of the main product is required for this.
 
-You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/product-variant#[get]/admin/api/2021-07/products/{product_id}/variants.json).
+You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/product-variant#[get]/admin/api/2022-04/products/{product_id}/variants.json).
 
 ```go
 // Define request
@@ -162,7 +162,7 @@ if err != nil {
 
 If you want to create a new variant, you can do so using the following function. The ID of the main product is required.
 
-You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/product-variant#[post]/admin/api/2021-07/products/{product_id}/variants.json).
+You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/product-variant#[post]/admin/api/2022-04/products/{product_id}/variants.json).
 
 ```go
 // Define request
@@ -208,7 +208,7 @@ if err != nil {
 
 If you want to renew an existing variant, this works similarly to creating a variant. **But you use the id of the variant and not the id of the main product.**
 
-You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/product-variant#[put]/admin/api/2021-07/variants/{variant_id}.json).
+You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/product-variant#[put]/admin/api/2022-04/variants/{variant_id}.json).
 
 ```go
 // Define request
@@ -252,7 +252,7 @@ if err != nil {
 
 ## Get all inventory locations
 
-If you want to read out all inventory locations, you can do this with the following function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/location#[get]/admin/api/2021-07/locations.json).
+If you want to read out all inventory locations, you can do this with the following function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/location#[get]/admin/api/2022-04/locations.json).
 
 ```go
 // Define request
@@ -273,7 +273,7 @@ if err != nil {
 
 ## Set an inventory level
 
-If you want to customize a pass, you can do so as follows. For this you need the Inventory Id and the Location Id of the product. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2021-07/resources/inventorylevel#[post]/admin/api/2021-07/inventory_levels/set.json).
+If you want to customize a pass, you can do so as follows. For this you need the Inventory Id and the Location Id of the product. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/inventorylevel#[post]/admin/api/2022-04/inventory_levels/set.json).
 
 ```go
 // Define request
