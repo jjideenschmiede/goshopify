@@ -285,15 +285,18 @@ type OrderReturn struct {
 					CurrencyCode string `json:"currency_code"`
 				} `json:"presentment_money"`
 			} `json:"price_set"`
-			ProductExists    bool          `json:"product_exists"`
-			ProductId        int64         `json:"product_id"`
-			Properties       []interface{} `json:"properties"`
-			Quantity         int           `json:"quantity"`
-			RequiresShipping bool          `json:"requires_shipping"`
-			Sku              string        `json:"sku"`
-			Taxable          bool          `json:"taxable"`
-			Title            string        `json:"title"`
-			TotalDiscount    string        `json:"total_discount"`
+			ProductExists bool  `json:"product_exists"`
+			ProductId     int64 `json:"product_id"`
+			Properties    []struct {
+				Name  string `json:"name"`
+				Value string `json:"value"`
+			} `json:"properties"`
+			Quantity         int    `json:"quantity"`
+			RequiresShipping bool   `json:"requires_shipping"`
+			Sku              string `json:"sku"`
+			Taxable          bool   `json:"taxable"`
+			Title            string `json:"title"`
+			TotalDiscount    string `json:"total_discount"`
 			TotalDiscountSet struct {
 				ShopMoney struct {
 					Amount       string `json:"amount"`
