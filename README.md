@@ -348,6 +348,28 @@ if err != nil {
 }
 ```
 
+## Get the last order
+
+If you want to read the last placed order from Shopify, then you can do it as follows.
+
+You can find the description from Shopify [here](https://shopify.dev/api/admin/rest/reference/orders/order).
+
+```go
+// Define request
+r := goshopify.Request{
+	StoreName:   "",
+    AccessToken: "",
+}
+
+// Get the last order
+order, err := goshopify.Order(r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(order)
+}
+```
+
 ## Add fulfillment to order
 
 If the item has been shipped, the following function can be used to submit the tracking number, shipping provider and tracking link.
