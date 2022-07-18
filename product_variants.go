@@ -202,3 +202,23 @@ func UpdateProductVariant(body ProductVariantBody, r Request) (ProductVariantRet
 	return decode, err
 
 }
+
+// DeleteVariant is to remove a variant form a product
+func DeleteVariant(productId, variantId int, r Request) error {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d/variants/%d.json", productId, variantId), "DELETE", nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Return nothing
+	return nil
+
+}
