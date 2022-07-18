@@ -258,6 +258,27 @@ if err != nil {
 }
 ```
 
+## Delete a variant
+
+If you want to remove a variant from a product, you can do it as follows.
+
+You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/product-variant#delete-products-product-id-variants-variant-id).
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Delete a variant
+err := goshopify.DeleteVariant(7179007656120, 41753091834040, r)
+if err != nil {
+    fmt.Println(err)
+}
+```
+
+
 ## Get all inventory locations
 
 If you want to read out all inventory locations, you can do this with the following function. You can find the description from Shopify [here](https://shopify.dev/api/admin-rest/2022-04/resources/location#[get]/admin/api/2022-04/locations.json).
