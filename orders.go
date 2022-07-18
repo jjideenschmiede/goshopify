@@ -432,3 +432,31 @@ func Orders(id int, r Request) (OrderReturn, error) {
 	return decode, err
 
 }
+
+// Order is to get the last order
+func Order(r Request) (OrderReturn, error) {
+
+	// Set config for new request
+	c := Config{"/orders.json?limit=1", "GET", nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return OrderReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode OrderReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return OrderReturn{}, err
+	}
+
+	// Return data
+	return decode, err
+
+}
