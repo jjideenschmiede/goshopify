@@ -22,16 +22,17 @@ type ProductBody struct {
 }
 
 type ProductBodyProduct struct {
-	Id          int                   `json:"id,omitempty"`
-	Title       string                `json:"title,omitempty"`
-	BodyHtml    string                `json:"body_html,omitempty"`
-	Vendor      string                `json:"vendor,omitempty"`
-	ProductType string                `json:"product_type,omitempty"`
-	Status      string                `json:"status,omitempty"`
-	Tags        string                `json:"tags,omitempty"`
-	Images      []ProductBodyImages   `json:"images,omitempty"`
-	Variants    []ProductBodyVariants `json:"variants,omitempty"`
-	Options     []ProductBodyOptions  `json:"options,omitempty"`
+	Id          int                     `json:"id,omitempty"`
+	Title       string                  `json:"title,omitempty"`
+	BodyHtml    string                  `json:"body_html"`
+	Vendor      string                  `json:"vendor"`
+	ProductType string                  `json:"product_type,omitempty"`
+	Status      string                  `json:"status,omitempty"`
+	Tags        string                  `json:"tags,omitempty"`
+	Images      []ProductBodyImages     `json:"images,omitempty"`
+	Variants    []ProductBodyVariants   `json:"variants,omitempty"`
+	Options     []ProductBodyOptions    `json:"options,omitempty"`
+	Metafields  []ProductBodyMetafields `json:"metafields,omitempty"`
 }
 
 type ProductBodyImages struct {
@@ -49,9 +50,9 @@ type ProductBodyVariants struct {
 	Option2             string  `json:"option2,omitempty"`
 	Option3             string  `json:"option3,omitempty"`
 	Taxable             bool    `json:"taxable,omitempty"`
-	Barcode             string  `json:"barcode,omitempty"`
-	Grams               int     `json:"grams,omitempty"`
-	Weight              float64 `json:"weight,omitempty"`
+	Barcode             string  `json:"barcode"`
+	Grams               int     `json:"grams"`
+	Weight              float64 `json:"weight"`
 	WeightUnit          string  `json:"weight_unit,omitempty"`
 	InventoryQuantity   int     `json:"inventory_quantity,omitempty"`
 	RequiresShipping    bool    `json:"requires_shipping,omitempty"`
@@ -60,6 +61,13 @@ type ProductBodyVariants struct {
 type ProductBodyOptions struct {
 	Name   string   `json:"name,omitempty"`
 	Values []string `json:"values,omitempty"`
+}
+
+type ProductBodyMetafields struct {
+	Key       string `json:"key"`
+	Value     string `json:"value"`
+	Type      string `json:"type"`
+	Namespace string `json:"namespace"`
 }
 
 // ProductReturn is to decode the json return
