@@ -345,21 +345,21 @@ type OrderReturn struct {
 		} `json:"line_items"`
 		Refunds         []interface{} `json:"refunds"`
 		ShippingAddress struct {
-			FirstName    string      `json:"first_name"`
-			Address1     string      `json:"address1"`
-			Phone        interface{} `json:"phone"`
-			City         string      `json:"city"`
-			Zip          string      `json:"zip"`
-			Province     interface{} `json:"province"`
-			Country      string      `json:"country"`
-			LastName     string      `json:"last_name"`
-			Address2     string      `json:"address2"`
-			Company      string      `json:"company"`
-			Latitude     float64     `json:"latitude"`
-			Longitude    float64     `json:"longitude"`
-			Name         string      `json:"name"`
-			CountryCode  string      `json:"country_code"`
-			ProvinceCode interface{} `json:"province_code"`
+			FirstName    string  `json:"first_name"`
+			Address1     string  `json:"address1"`
+			Phone        string  `json:"phone"`
+			City         string  `json:"city"`
+			Zip          string  `json:"zip"`
+			Province     string  `json:"province"`
+			Country      string  `json:"country"`
+			LastName     string  `json:"last_name"`
+			Address2     string  `json:"address2"`
+			Company      string  `json:"company"`
+			Latitude     float64 `json:"latitude"`
+			Longitude    float64 `json:"longitude"`
+			Name         string  `json:"name"`
+			CountryCode  string  `json:"country_code"`
+			ProvinceCode string  `json:"province_code"`
 		} `json:"shipping_address"`
 		ShippingLines []struct {
 			Id                 int64       `json:"id"`
