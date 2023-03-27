@@ -1,18 +1,10 @@
-//********************************************************************************************************************//
-//
-// Copyright (C) 2018 - 2021 J&J Ideenschmiede GmbH <info@jj-ideenschmiede.de>
-//
-// This file is part of goshopify.
-// All code may be used. Feel free and maybe code something better.
-//
-// Author: Jonas Kwiedor (aka gowizzard)
-//
-//********************************************************************************************************************//
+// Copyright 2023 J&J Ideenschmiede GmbH. All rights reserved.
 
 package goshopify
 
 import (
 	"encoding/json"
+	"net/http"
 	"time"
 )
 
@@ -45,7 +37,7 @@ type InventoryLocationsReturn struct {
 func InventoryLocations(r Request) (InventoryLocationsReturn, error) {
 
 	// Set config for new request
-	c := Config{"/locations.json", "GET", nil}
+	c := Config{"/locations.json", http.MethodGet, nil}
 
 	// Send request
 	response, err := c.Send(r)

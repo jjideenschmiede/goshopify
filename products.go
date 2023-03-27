@@ -1,19 +1,11 @@
-//**********************************************************
-//
-// Copyright (C) 2018 - 2021 J&J Ideenschmiede GmbH <info@jj-ideenschmiede.de>
-//
-// This file is part of goshopify.
-// All code may be used. Feel free and maybe code something better.
-//
-// Author: Jonas Kwiedor
-//
-//**********************************************************
+// Copyright 2023 J&J Ideenschmiede GmbH. All rights reserved.
 
 package goshopify
 
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 )
 
 // ProductBody is to structure the product data
@@ -116,7 +108,7 @@ type ProductReturnVariants struct {
 	Taxable              bool    `json:"taxable"`
 	Barcode              string  `json:"barcode"`
 	Grams                int     `json:"grams"`
-	ImageId              string  `json:"image_id"`
+	ImageId              int     `json:"image_id"`
 	Weight               float64 `json:"weight"`
 	WeightUnit           string  `json:"weight_unit"`
 	InventoryItemId      int     `json:"inventory_item_id"`
@@ -166,7 +158,7 @@ type ProductReturnImage struct {
 func Product(id int, r Request) (ProductReturn, error) {
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d.json", id), "GET", nil}
+	c := Config{fmt.Sprintf("/products/%d.json", id), http.MethodGet, nil}
 
 	// Send request
 	response, err := c.Send(r)
@@ -200,7 +192,7 @@ func AddProduct(body ProductBody, r Request) (ProductReturn, error) {
 	}
 
 	// Set config for new request
-	c := Config{"/products.json", "POST", convert}
+	c := Config{"/products.json", http.MethodPost, convert}
 
 	// Send request
 	response, err := c.Send(r)
@@ -234,7 +226,7 @@ func UpdateProduct(body ProductBody, r Request) (ProductReturn, error) {
 	}
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d.json", body.Product.Id), "PUT", convert}
+	c := Config{fmt.Sprintf("/products/%d.json", body.Product.Id), http.MethodPut, convert}
 
 	// Send request
 	response, err := c.Send(r)
@@ -262,7 +254,7 @@ func UpdateProduct(body ProductBody, r Request) (ProductReturn, error) {
 func DeleteProduct(id int, r Request) error {
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d.json", id), "DELETE", nil}
+	c := Config{fmt.Sprintf("/products/%d.json", id), http.MethodDelete, nil}
 
 	// Send request
 	response, err := c.Send(r)

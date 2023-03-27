@@ -1,19 +1,11 @@
-//********************************************************************************************************************//
-//
-// Copyright (C) 2018 - 2021 J&J Ideenschmiede GmbH <info@jj-ideenschmiede.de>
-//
-// This file is part of goshopify.
-// All code may be used. Feel free and maybe code something better.
-//
-// Author: Jonas Kwiedor (aka gowizzard)
-//
-//********************************************************************************************************************//
+// Copyright 2023 J&J Ideenschmiede GmbH. All rights reserved.
 
 package goshopify
 
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -409,7 +401,7 @@ type OrderReturn struct {
 func Orders(id int, r Request) (OrderReturn, error) {
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/orders.json?limit=200&since_id=%d", id), "GET", nil}
+	c := Config{fmt.Sprintf("/orders.json?limit=200&since_id=%d", id), http.MethodGet, nil}
 
 	// Send request
 	response, err := c.Send(r)
@@ -437,7 +429,7 @@ func Orders(id int, r Request) (OrderReturn, error) {
 func Order(r Request) (OrderReturn, error) {
 
 	// Set config for new request
-	c := Config{"/orders.json?limit=1", "GET", nil}
+	c := Config{"/orders.json?limit=1", http.MethodGet, nil}
 
 	// Send request
 	response, err := c.Send(r)

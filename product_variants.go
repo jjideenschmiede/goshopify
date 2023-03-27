@@ -1,19 +1,11 @@
-//********************************************************************************************************************//
-//
-// Copyright (C) 2018 - 2021 J&J Ideenschmiede GmbH <info@jj-ideenschmiede.de>
-//
-// This file is part of goshopify.
-// All code may be used. Feel free and maybe code something better.
-//
-// Author: Jonas Kwiedor (aka gowizzard)
-//
-//********************************************************************************************************************//
+// Copyright 2023 J&J Ideenschmiede GmbH. All rights reserved.
 
 package goshopify
 
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -111,7 +103,7 @@ type ProductVariantReturn struct {
 func ProductVariants(id int, r Request) (ProductVariantsReturn, error) {
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d/variants.json", id), "GET", nil}
+	c := Config{fmt.Sprintf("/products/%d/variants.json", id), http.MethodGet, nil}
 
 	// Send request
 	response, err := c.Send(r)
@@ -145,7 +137,7 @@ func AddProductVariant(body ProductVariantBody, r Request) (ProductVariantReturn
 	}
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d/variants.json", body.Variant.Id), "POST", convert}
+	c := Config{fmt.Sprintf("/products/%d/variants.json", body.Variant.Id), http.MethodPost, convert}
 
 	// Send request
 	response, err := c.Send(r)
@@ -179,7 +171,7 @@ func UpdateProductVariant(body ProductVariantBody, r Request) (ProductVariantRet
 	}
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/variants/%d.json", body.Variant.Id), "PUT", convert}
+	c := Config{fmt.Sprintf("/variants/%d.json", body.Variant.Id), http.MethodPut, convert}
 
 	// Send request
 	response, err := c.Send(r)
@@ -207,7 +199,7 @@ func UpdateProductVariant(body ProductVariantBody, r Request) (ProductVariantRet
 func DeleteVariant(productId, variantId int, r Request) error {
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d/variants/%d.json", productId, variantId), "DELETE", nil}
+	c := Config{fmt.Sprintf("/products/%d/variants/%d.json", productId, variantId), http.MethodDelete, nil}
 
 	// Send request
 	response, err := c.Send(r)

@@ -1,13 +1,4 @@
-//**********************************************************
-//
-// Copyright (C) 2018 - 2021 J&J Ideenschmiede GmbH <info@jj-ideenschmiede.de>
-//
-// This file is part of goshopify.
-// All code may be used. Feel free and maybe code something better.
-//
-// Author: Jonas Kwiedor
-//
-//**********************************************************
+// Copyright 2023 J&J Ideenschmiede GmbH. All rights reserved.
 
 package goshopify
 
@@ -19,7 +10,7 @@ import (
 const (
 	transferProtocol = "https://"
 	baseUrl          = ".myshopify.com/admin/api/"
-	apiVersion       = "2022-04"
+	apiVersion       = "2023-04"
 )
 
 // Config is to define config data
