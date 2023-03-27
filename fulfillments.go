@@ -1,36 +1,38 @@
-//********************************************************************************************************************//
-//
-// Copyright (C) 2018 - 2022 J&J Ideenschmiede GmbH <info@jj-ideenschmiede.de>
-//
-// This file is part of goshopify.
-// All code may be used. Feel free and maybe code something better.
-//
-// Author: Jonas Kwiedor (aka gowizzard)
-//
-//********************************************************************************************************************//
+// Copyright 2023 J&J Ideenschmiede GmbH. All rights reserved.
 
 package goshopify
 
 import (
 	"encoding/json"
-	"fmt"
+	"net/http"
 	"time"
 )
 
-// FulfillmentBody is to structure the body data
-type FulfillmentBody struct {
-	Fulfillment FulfillmentBodyFulfillment `json:"fulfillment"`
+// FulfillmentsBody is to structure the body data
+type FulfillmentsBody struct {
+	Fulfillment FulfillmentsBodyFulfillment `json:"fulfillment"`
 }
 
-type FulfillmentBodyFulfillment struct {
-	LocationId      int    `json:"location_id"`
-	TrackingNumber  string `json:"tracking_number"`
-	TrackingCompany string `json:"tracking_company"`
-	TrackingUrl     string `json:"tracking_url"`
+type FulfillmentsBodyFulfillment struct {
+	Message                     string                                      `json:"message"`
+	NotifyCustomer              bool                                        `json:"notify_customer"`
+	TrackingInfo                FulfillmentsBodyTrackingInfo                `json:"tracking_info"`
+	LineItemsByFulfillmentOrder FulfillmentsBodyLineItemsByFulfillmentOrder `json:"line_items_by_fulfillment_order"`
 }
 
-// FulfillmentReturn is to decode the json data
-type FulfillmentReturn struct {
+type FulfillmentsBodyTrackingInfo struct {
+	Number  int    `json:"number"`
+	Url     string `json:"url"`
+	Company string `json:"company"`
+}
+
+type FulfillmentsBodyLineItemsByFulfillmentOrder struct {
+	FulfillmentOrderId        int64         `json:"fulfillment_order_id"`
+	FulfillmentOrderLineItems []interface{} `json:"fulfillment_order_line_items"`
+}
+
+// FulfillmentsReturn is to decode the json data
+type FulfillmentsReturn struct {
 	Fulfillment struct {
 		Id              int64       `json:"id"`
 		OrderId         int64       `json:"order_id"`
@@ -103,16 +105,6 @@ type FulfillmentReturn struct {
 					} `json:"presentment_money"`
 				} `json:"price_set"`
 			} `json:"tax_lines"`
-			OriginLocation struct {
-				Id           int64  `json:"id"`
-				CountryCode  string `json:"country_code"`
-				ProvinceCode string `json:"province_code"`
-				Name         string `json:"name"`
-				Address1     string `json:"address1"`
-				Address2     string `json:"address2"`
-				City         string `json:"city"`
-				Zip          string `json:"zip"`
-			} `json:"origin_location"`
 		} `json:"line_items"`
 		TrackingNumber  string   `json:"tracking_number"`
 		TrackingNumbers []string `json:"tracking_numbers"`
@@ -125,33 +117,33 @@ type FulfillmentReturn struct {
 	} `json:"fulfillment"`
 }
 
-// AddFulfillment is to add a new fulfillment
-func AddFulfillment(id int, body FulfillmentBody, r Request) (FulfillmentReturn, error) {
+// Fulfillments is to create a fulfillment for an order or multiple
+func Fulfillments(body FulfillmentsBody, r Request) (FulfillmentsReturn, error) {
 
 	// Convert body
 	convert, err := json.Marshal(body)
 	if err != nil {
-		return FulfillmentReturn{}, err
+		return FulfillmentsReturn{}, err
 	}
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/orders/%d/fulfillments.json", id), "POST", convert}
+	c := Config{"/fulfillments.json", http.MethodPost, convert}
 
 	// Send request
 	response, err := c.Send(r)
 	if err != nil {
-		return FulfillmentReturn{}, err
+		return FulfillmentsReturn{}, err
 	}
 
 	// Close request
 	defer response.Body.Close()
 
 	// Decode data
-	var decode FulfillmentReturn
+	var decode FulfillmentsReturn
 
 	err = json.NewDecoder(response.Body).Decode(&decode)
 	if err != nil {
-		return FulfillmentReturn{}, err
+		return FulfillmentsReturn{}, err
 	}
 
 	// Return data
