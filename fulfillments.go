@@ -21,7 +21,7 @@ type FulfillmentsBodyFulfillment struct {
 }
 
 type FulfillmentsBodyTrackingInfo struct {
-	Number  int    `json:"number"`
+	Number  string `json:"number"`
 	Url     string `json:"url"`
 	Company string `json:"company"`
 }
