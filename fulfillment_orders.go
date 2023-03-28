@@ -12,15 +12,15 @@ import (
 // FulfillmentOrdersReturn is to decode the json data
 type FulfillmentOrdersReturn struct {
 	FulfillmentOrders []struct {
-		Id                 int64    `json:"id"`
-		ShopId             int64    `json:"shop_id"`
-		OrderId            int64    `json:"order_id"`
-		AssignedLocationId int64    `json:"assigned_location_id"`
+		Id                 int      `json:"id"`
+		ShopId             int      `json:"shop_id"`
+		OrderId            int      `json:"order_id"`
+		AssignedLocationId int      `json:"assigned_location_id"`
 		RequestStatus      string   `json:"request_status"`
 		Status             string   `json:"status"`
 		SupportedActions   []string `json:"supported_actions"`
 		Destination        struct {
-			Id        int64       `json:"id"`
+			Id        int         `json:"id"`
 			Address1  string      `json:"address1"`
 			Address2  interface{} `json:"address2"`
 			City      string      `json:"city"`
@@ -34,21 +34,21 @@ type FulfillmentOrdersReturn struct {
 			Zip       string      `json:"zip"`
 		} `json:"destination"`
 		LineItems []struct {
-			Id                  int64 `json:"id"`
-			ShopId              int64 `json:"shop_id"`
-			FulfillmentOrderId  int64 `json:"fulfillment_order_id"`
-			Quantity            int   `json:"quantity"`
-			LineItemId          int64 `json:"line_item_id"`
-			InventoryItemId     int64 `json:"inventory_item_id"`
-			FulfillableQuantity int   `json:"fulfillable_quantity"`
-			VariantId           int64 `json:"variant_id"`
+			Id                  int `json:"id"`
+			ShopId              int `json:"shop_id"`
+			FulfillmentOrderId  int `json:"fulfillment_order_id"`
+			Quantity            int `json:"quantity"`
+			LineItemId          int `json:"line_item_id"`
+			InventoryItemId     int `json:"inventory_item_id"`
+			FulfillableQuantity int `json:"fulfillable_quantity"`
+			VariantId           int `json:"variant_id"`
 		} `json:"line_items"`
 		FulfillAt           time.Time     `json:"fulfill_at"`
 		FulfillBy           interface{}   `json:"fulfill_by"`
 		InternationalDuties interface{}   `json:"international_duties"`
 		FulfillmentHolds    []interface{} `json:"fulfillment_holds"`
 		DeliveryMethod      struct {
-			Id                  int64       `json:"id"`
+			Id                  int         `json:"id"`
 			MethodType          string      `json:"method_type"`
 			MinDeliveryDateTime interface{} `json:"min_delivery_date_time"`
 			MaxDeliveryDateTime interface{} `json:"max_delivery_date_time"`
@@ -60,7 +60,7 @@ type FulfillmentOrdersReturn struct {
 			Address2    interface{} `json:"address2"`
 			City        string      `json:"city"`
 			CountryCode string      `json:"country_code"`
-			LocationId  int64       `json:"location_id"`
+			LocationId  int         `json:"location_id"`
 			Name        string      `json:"name"`
 			Phone       string      `json:"phone"`
 			Province    interface{} `json:"province"`
