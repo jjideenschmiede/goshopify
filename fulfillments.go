@@ -4,6 +4,8 @@ package goshopify
 
 import (
 	"encoding/json"
+	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -14,10 +16,10 @@ type FulfillmentsBody struct {
 }
 
 type FulfillmentsBodyFulfillment struct {
-	Message                     string                                      `json:"message"`
-	NotifyCustomer              bool                                        `json:"notify_customer"`
-	TrackingInfo                FulfillmentsBodyTrackingInfo                `json:"tracking_info"`
-	LineItemsByFulfillmentOrder FulfillmentsBodyLineItemsByFulfillmentOrder `json:"line_items_by_fulfillment_order"`
+	Message                     string                                        `json:"message"`
+	NotifyCustomer              bool                                          `json:"notify_customer"`
+	TrackingInfo                FulfillmentsBodyTrackingInfo                  `json:"tracking_info"`
+	LineItemsByFulfillmentOrder []FulfillmentsBodyLineItemsByFulfillmentOrder `json:"line_items_by_fulfillment_order"`
 }
 
 type FulfillmentsBodyTrackingInfo struct {
@@ -137,6 +139,9 @@ func Fulfillments(body FulfillmentsBody, r Request) (FulfillmentsReturn, error) 
 
 	// Close request
 	defer response.Body.Close()
+
+	read, _ := io.ReadAll(response.Body)
+	fmt.Println(string(read))
 
 	// Decode data
 	var decode FulfillmentsReturn
