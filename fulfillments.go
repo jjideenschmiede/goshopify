@@ -4,8 +4,6 @@ package goshopify
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"net/http"
 	"time"
 )
@@ -117,6 +115,7 @@ type FulfillmentsReturn struct {
 		Name              string `json:"name"`
 		AdminGraphqlApiId string `json:"admin_graphql_api_id"`
 	} `json:"fulfillment"`
+	Errors []string `json:"errors"`
 }
 
 // Fulfillments is to create a fulfillment for an order or multiple
@@ -139,9 +138,6 @@ func Fulfillments(body FulfillmentsBody, r Request) (FulfillmentsReturn, error) 
 
 	// Close request
 	defer response.Body.Close()
-
-	read, _ := io.ReadAll(response.Body)
-	fmt.Println(string(read))
 
 	// Decode data
 	var decode FulfillmentsReturn
