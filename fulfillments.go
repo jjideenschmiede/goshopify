@@ -27,33 +27,33 @@ type FulfillmentsBodyTrackingInfo struct {
 }
 
 type FulfillmentsBodyLineItemsByFulfillmentOrder struct {
-	FulfillmentOrderId        int64         `json:"fulfillment_order_id"`
+	FulfillmentOrderId        int           `json:"fulfillment_order_id"`
 	FulfillmentOrderLineItems []interface{} `json:"fulfillment_order_line_items"`
 }
 
 // FulfillmentsReturn is to decode the json data
 type FulfillmentsReturn struct {
 	Fulfillment struct {
-		Id              int64       `json:"id"`
-		OrderId         int64       `json:"order_id"`
+		Id              int         `json:"id"`
+		OrderId         int         `json:"order_id"`
 		Status          string      `json:"status"`
 		CreatedAt       time.Time   `json:"created_at"`
 		Service         string      `json:"service"`
 		UpdatedAt       time.Time   `json:"updated_at"`
 		TrackingCompany string      `json:"tracking_company"`
 		ShipmentStatus  interface{} `json:"shipment_status"`
-		LocationId      int64       `json:"location_id"`
+		LocationId      int         `json:"location_id"`
 		OriginAddress   interface{} `json:"origin_address"`
 		LineItems       []struct {
-			Id                         int64         `json:"id"`
-			VariantId                  int64         `json:"variant_id"`
+			Id                         int           `json:"id"`
+			VariantId                  int           `json:"variant_id"`
 			Title                      string        `json:"title"`
 			Quantity                   int           `json:"quantity"`
 			Sku                        string        `json:"sku"`
 			VariantTitle               string        `json:"variant_title"`
 			Vendor                     string        `json:"vendor"`
 			FulfillmentService         string        `json:"fulfillment_service"`
-			ProductId                  int64         `json:"product_id"`
+			ProductId                  int           `json:"product_id"`
 			RequiresShipping           bool          `json:"requires_shipping"`
 			Taxable                    bool          `json:"taxable"`
 			GiftCard                   bool          `json:"gift_card"`
