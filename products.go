@@ -46,6 +46,7 @@ type ProductBodyVariants struct {
 	Grams               int     `json:"grams"`
 	Weight              float64 `json:"weight"`
 	WeightUnit          string  `json:"weight_unit,omitempty"`
+	InventoryItemId     int     `json:"inventory_item_id,omitempty"`
 	InventoryQuantity   int     `json:"inventory_quantity,omitempty"`
 	RequiresShipping    bool    `json:"requires_shipping,omitempty"`
 }
