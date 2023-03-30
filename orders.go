@@ -87,7 +87,6 @@ type OrderReturn struct {
 		EstimatedTaxes         bool          `json:"estimated_taxes"`
 		FinancialStatus        string        `json:"financial_status"`
 		FulfillmentStatus      interface{}   `json:"fulfillment_status"`
-		Gateway                string        `json:"gateway"`
 		LandingSite            string        `json:"landing_site"`
 		LandingSiteRef         interface{}   `json:"landing_site_ref"`
 		LocationId             interface{}   `json:"location_id"`
