@@ -370,6 +370,28 @@ if err != nil {
 }
 ```
 
+## Get a list of transactions from an order
+
+If you want to read all transactions from an order from Shopify, then you can do it as follows.
+
+You can find the description from Shopify [here](https://shopify.dev/docs/api/admin-rest/2023-04/resources/transaction#get-orders-order-id-transactions).
+
+```go
+// Define request
+r := goshopify.Request{
+	StoreName:   "",
+    AccessToken: "",
+}
+
+// Get the last order
+transactions, err := goshopify.OrderTransactions(4568137629880, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(transaction)
+}
+```
+
 ## Add fulfillment to order
 
 If the item has been shipped, the following function can be used to submit the tracking number, shipping provider and tracking link.
