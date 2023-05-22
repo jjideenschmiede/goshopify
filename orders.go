@@ -396,6 +396,57 @@ type OrderReturn struct {
 	} `json:"orders"`
 }
 
+// OrderTransactionsReturn is to decode the order transactions return form shopify
+type OrderTransactionsReturn struct {
+	Transactions []struct {
+		Id             int         `json:"id"`
+		OrderId        int         `json:"order_id"`
+		Kind           string      `json:"kind"`
+		Gateway        string      `json:"gateway"`
+		Status         string      `json:"status"`
+		Message        string      `json:"message"`
+		CreatedAt      time.Time   `json:"created_at"`
+		Test           bool        `json:"test"`
+		Authorization  string      `json:"authorization"`
+		LocationId     interface{} `json:"location_id"`
+		UserId         interface{} `json:"user_id"`
+		ParentId       interface{} `json:"parent_id"`
+		ProcessedAt    time.Time   `json:"processed_at"`
+		DeviceId       interface{} `json:"device_id"`
+		ErrorCode      interface{} `json:"error_code"`
+		SourceName     string      `json:"source_name"`
+		PaymentDetails struct {
+			CreditCardBin             string      `json:"credit_card_bin"`
+			AvsResultCode             interface{} `json:"avs_result_code"`
+			CvvResultCode             interface{} `json:"cvv_result_code"`
+			CreditCardNumber          string      `json:"credit_card_number"`
+			CreditCardCompany         string      `json:"credit_card_company"`
+			BuyerActionInfo           interface{} `json:"buyer_action_info"`
+			CreditCardName            string      `json:"credit_card_name"`
+			CreditCardWallet          interface{} `json:"credit_card_wallet"`
+			CreditCardExpirationMonth int         `json:"credit_card_expiration_month"`
+			CreditCardExpirationYear  int         `json:"credit_card_expiration_year"`
+		} `json:"payment_details"`
+		Receipt struct {
+			PaidAmount string `json:"paid_amount"`
+		} `json:"receipt"`
+		Amount            string `json:"amount"`
+		Currency          string `json:"currency"`
+		PaymentId         string `json:"payment_id"`
+		TotalUnsettledSet struct {
+			PresentmentMoney struct {
+				Amount   string `json:"amount"`
+				Currency string `json:"currency"`
+			} `json:"presentment_money"`
+			ShopMoney struct {
+				Amount   string `json:"amount"`
+				Currency string `json:"currency"`
+			} `json:"shop_money"`
+		} `json:"total_unsettled_set"`
+		AdminGraphqlApiId string `json:"admin_graphql_api_id"`
+	} `json:"transactions"`
+}
+
 // Orders is to get a list of all orders since the id
 func Orders(id int, r Request) (OrderReturn, error) {
 
@@ -445,6 +496,34 @@ func Order(r Request) (OrderReturn, error) {
 	err = json.NewDecoder(response.Body).Decode(&decode)
 	if err != nil {
 		return OrderReturn{}, err
+	}
+
+	// Return data
+	return decode, err
+
+}
+
+// OrderTransactions is to get all transactions from an order
+func OrderTransactions(id int, r Request) (OrderTransactionsReturn, error) {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/orders/%d/transactions.json", id), http.MethodGet, nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return OrderTransactionsReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode OrderTransactionsReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return OrderTransactionsReturn{}, err
 	}
 
 	// Return data
