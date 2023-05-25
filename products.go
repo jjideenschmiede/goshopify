@@ -35,7 +35,7 @@ type ProductBodyVariants struct {
 	Title               string  `json:"title,omitempty"`
 	Price               string  `json:"price,omitempty"`
 	Sku                 string  `json:"sku,omitempty"`
-	CompareAtPrice      string  `json:"compare_at_price,omitempty"`
+	CompareAtPrice      string  `json:"compare_at_price"`
 	FulfillmentService  string  `json:"fulfillment_service,omitempty"`
 	InventoryManagement string  `json:"inventory_management,omitempty"`
 	Option1             string  `json:"option1,omitempty"`
