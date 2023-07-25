@@ -115,7 +115,7 @@ type FulfillmentsReturn struct {
 		Name              string `json:"name"`
 		AdminGraphqlApiId string `json:"admin_graphql_api_id"`
 	} `json:"fulfillment"`
-	Errors []string `json:"errors"`
+	Errors any `json:"errors"`
 }
 
 // Fulfillments is to create a fulfillment for an order or multiple
