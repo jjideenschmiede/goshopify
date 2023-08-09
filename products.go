@@ -57,6 +57,7 @@ type ProductBodyOptions struct {
 }
 
 type ProductBodyMetafields struct {
+	Id        int    `json:"id,omitempty"`
 	Key       string `json:"key"`
 	Value     string `json:"value"`
 	Type      string `json:"type"`
