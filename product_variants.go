@@ -69,8 +69,8 @@ type ProductVariantsReturn struct {
 // ProductVariantReturn is to decode the json data
 type ProductVariantReturn struct {
 	Variant struct {
-		Id                   int64     `json:"id"`
-		ProductId            int64     `json:"product_id"`
+		Id                   int       `json:"id"`
+		ProductId            int       `json:"product_id"`
 		Title                string    `json:"title"`
 		Price                string    `json:"price"`
 		Sku                  string    `json:"sku"`
@@ -90,7 +90,7 @@ type ProductVariantReturn struct {
 		ImageId              string    `json:"image_id"`
 		Weight               float64   `json:"weight"`
 		WeightUnit           string    `json:"weight_unit"`
-		InventoryItemId      int64     `json:"inventory_item_id"`
+		InventoryItemId      int       `json:"inventory_item_id"`
 		InventoryQuantity    int       `json:"inventory_quantity"`
 		OldInventoryQuantity int       `json:"old_inventory_quantity"`
 		RequiresShipping     bool      `json:"requires_shipping"`
@@ -102,12 +102,12 @@ type ProductVariantReturn struct {
 // ProductVariantMetafieldsReturn is to decode the json data
 type ProductVariantMetafieldsReturn struct {
 	Metafields []struct {
-		Id                int64       `json:"id"`
+		Id                int         `json:"id"`
 		Namespace         string      `json:"namespace"`
 		Key               string      `json:"key"`
 		Value             string      `json:"value"`
 		Description       interface{} `json:"description"`
-		OwnerId           int64       `json:"owner_id"`
+		OwnerId           int         `json:"owner_id"`
 		CreatedAt         time.Time   `json:"created_at"`
 		UpdatedAt         time.Time   `json:"updated_at"`
 		OwnerResource     string      `json:"owner_resource"`
