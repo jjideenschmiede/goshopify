@@ -169,12 +169,12 @@ type ProductReturnImage struct {
 // ProductMetafieldsReturn is to decode the json return
 type ProductMetafieldsReturn struct {
 	Metafields []struct {
-		Id                int64       `json:"id"`
+		Id                int         `json:"id"`
 		Namespace         string      `json:"namespace"`
 		Key               string      `json:"key"`
 		Value             string      `json:"value"`
 		Description       interface{} `json:"description"`
-		OwnerId           int64       `json:"owner_id"`
+		OwnerId           int         `json:"owner_id"`
 		CreatedAt         time.Time   `json:"created_at"`
 		UpdatedAt         time.Time   `json:"updated_at"`
 		OwnerResource     string      `json:"owner_resource"`
