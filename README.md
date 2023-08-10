@@ -145,6 +145,26 @@ if err != nil {
 }
 ```
 
+## Get a list of metafields for a product
+
+If you want to read out all metafields of a product, you can do this as follows. You need the ID of the product.
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Get all metafields of a product
+metafields, err := goshopify.ProductMetafields(7305370009784, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(metafields)
+}
+```
+
 ## Get a list of all product variants
 
 If you want to read out all variants of a product, you can do this as follows. Only the ID of the main product is required for this.
@@ -278,6 +298,25 @@ if err != nil {
 }
 ```
 
+## Get a list of metafields for a product variant
+
+If you want to read out all metafields of a product variant, you can do this as follows. You need the ID of the main product and the ID of the variant.
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Get all metafields of a product variant
+metafields, err := goshopify.ProductVariantMetafields(7305370009784, 42407097598136, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(metafields)
+}
+```
 
 ## Get all inventory locations
 

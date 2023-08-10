@@ -99,6 +99,24 @@ type ProductVariantReturn struct {
 	Errors interface{} `json:"errors,omitempty"`
 }
 
+// ProductVariantMetafieldsReturn is to decode the json data
+type ProductVariantMetafieldsReturn struct {
+	Metafields []struct {
+		Id                int64       `json:"id"`
+		Namespace         string      `json:"namespace"`
+		Key               string      `json:"key"`
+		Value             string      `json:"value"`
+		Description       interface{} `json:"description"`
+		OwnerId           int64       `json:"owner_id"`
+		CreatedAt         time.Time   `json:"created_at"`
+		UpdatedAt         time.Time   `json:"updated_at"`
+		OwnerResource     string      `json:"owner_resource"`
+		Type              string      `json:"type"`
+		AdminGraphqlApiId string      `json:"admin_graphql_api_id"`
+	} `json:"metafields"`
+	Errors interface{} `json:"errors,omitempty"`
+}
+
 // ProductVariants is to get a list of all product variants
 func ProductVariants(id int, r Request) (ProductVariantsReturn, error) {
 
@@ -212,5 +230,33 @@ func DeleteVariant(productId, variantId int, r Request) error {
 
 	// Return nothing
 	return nil
+
+}
+
+// ProductVariantMetafields is to get a list of all product variant metafields
+func ProductVariantMetafields(productId, variantId int, r Request) (ProductVariantMetafieldsReturn, error) {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d/variants/%d/metafields.json", productId, variantId), http.MethodGet, nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return ProductVariantMetafieldsReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode ProductVariantMetafieldsReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return ProductVariantMetafieldsReturn{}, err
+	}
+
+	// Return data
+	return decode, err
 
 }

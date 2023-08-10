@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 )
 
 // ProductBody is to structure the product data
@@ -165,6 +166,24 @@ type ProductReturnImage struct {
 	AdminGraphqlApiId string        `json:"admin_graphql_api_id"`
 }
 
+// ProductMetafieldsReturn is to decode the json return
+type ProductMetafieldsReturn struct {
+	Metafields []struct {
+		Id                int64       `json:"id"`
+		Namespace         string      `json:"namespace"`
+		Key               string      `json:"key"`
+		Value             string      `json:"value"`
+		Description       interface{} `json:"description"`
+		OwnerId           int64       `json:"owner_id"`
+		CreatedAt         time.Time   `json:"created_at"`
+		UpdatedAt         time.Time   `json:"updated_at"`
+		OwnerResource     string      `json:"owner_resource"`
+		Type              string      `json:"type"`
+		AdminGraphqlApiId string      `json:"admin_graphql_api_id"`
+	} `json:"metafields"`
+	Errors interface{} `json:"errors,omitempty"`
+}
+
 // Product is to get a product via id
 func Product(id int, r Request) (ProductReturn, error) {
 
@@ -278,5 +297,33 @@ func DeleteProduct(id int, r Request) error {
 
 	// Return nothing
 	return nil
+
+}
+
+// ProductMetafields is to get a list of all product variant metafields
+func ProductMetafields(id int, r Request) (ProductMetafieldsReturn, error) {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d/metafields.json", id), http.MethodGet, nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return ProductMetafieldsReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode ProductMetafieldsReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return ProductMetafieldsReturn{}, err
+	}
+
+	// Return data
+	return decode, err
 
 }
