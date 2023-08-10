@@ -327,3 +327,23 @@ func ProductMetafields(id int, r Request) (ProductMetafieldsReturn, error) {
 	return decode, err
 
 }
+
+// DeleteProductMetafield is to remove a metafield from a product
+func DeleteProductMetafield(productId, metafieldId int, r Request) error {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d/metafields/%d.json", productId, metafieldId), http.MethodDelete, nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Return nothing
+	return nil
+
+}
