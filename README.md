@@ -165,6 +165,24 @@ if err != nil {
 }
 ```
 
+## Delete a metafield from a product
+
+If you want to delete a metafield from a product, you can do so using the following function. 
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Delete a variant
+err := goshopify.DeleteProductMetafield(7179007656120, 26048686751928, r)
+if err != nil {
+    fmt.Println(err)
+}
+```
+
 ## Get a list of all product variants
 
 If you want to read out all variants of a product, you can do this as follows. Only the ID of the main product is required for this.
@@ -300,7 +318,7 @@ if err != nil {
 
 ## Get a list of metafields for a product variant
 
-If you want to read out all metafields of a product variant, you can do this as follows. You need the ID of the main product and the ID of the variant.
+If you want to read out all metafields of a product variant, you can do this as follows. 
 
 ```go
 // Define request
@@ -315,6 +333,24 @@ if err != nil {
     fmt.Println(err)
 } else {
     fmt.Println(metafields)
+}
+```
+
+## Delete a metafield from a variant product
+
+If you want to delete a metafield from a variant, you can do so using the following function. You need the ID of the main product and the ID of the variant.
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Delete a variant
+err := goshopify.DeleteProductVariantMetafield(7179007656120, 41753091834040, 26048686751928, r)
+if err != nil {
+    fmt.Println(err)
 }
 ```
 
