@@ -265,7 +265,7 @@ func ProductVariantMetafields(productId, variantId int, r Request) (ProductVaria
 func DeleteProductVariantMetafield(productId, variantId, metafieldId int, r Request) error {
 
 	// Set config for new request
-	c := Config{fmt.Sprintf("/products/%d/metafields/%d/%d.json", productId, variantId, metafieldId), http.MethodDelete, nil}
+	c := Config{fmt.Sprintf("/products/%d/variants/%d/metafields/%d.json", productId, variantId, metafieldId), http.MethodDelete, nil}
 
 	// Send request
 	response, err := c.Send(r)
