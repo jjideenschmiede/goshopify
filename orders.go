@@ -80,34 +80,37 @@ type OrderReturn struct {
 				CurrencyCode string `json:"currency_code"`
 			} `json:"presentment_money"`
 		} `json:"current_total_tax_set"`
-		CustomerLocale         string        `json:"customer_locale"`
-		DeviceId               interface{}   `json:"device_id"`
-		DiscountCodes          []interface{} `json:"discount_codes"`
-		Email                  string        `json:"email"`
-		EstimatedTaxes         bool          `json:"estimated_taxes"`
-		FinancialStatus        string        `json:"financial_status"`
-		FulfillmentStatus      interface{}   `json:"fulfillment_status"`
-		LandingSite            string        `json:"landing_site"`
-		LandingSiteRef         interface{}   `json:"landing_site_ref"`
-		LocationId             interface{}   `json:"location_id"`
-		Name                   string        `json:"name"`
-		Note                   interface{}   `json:"note"`
-		NoteAttributes         []interface{} `json:"note_attributes"`
-		Number                 int           `json:"number"`
-		OrderNumber            int           `json:"order_number"`
-		OrderStatusUrl         string        `json:"order_status_url"`
-		OriginalTotalDutiesSet interface{}   `json:"original_total_duties_set"`
-		PaymentGatewayNames    []string      `json:"payment_gateway_names"`
-		Phone                  interface{}   `json:"phone"`
-		PresentmentCurrency    string        `json:"presentment_currency"`
-		ProcessedAt            time.Time     `json:"processed_at"`
-		ProcessingMethod       string        `json:"processing_method"`
-		Reference              interface{}   `json:"reference"`
-		ReferringSite          string        `json:"referring_site"`
-		SourceIdentifier       interface{}   `json:"source_identifier"`
-		SourceName             string        `json:"source_name"`
-		SourceUrl              interface{}   `json:"source_url"`
-		SubtotalPrice          string        `json:"subtotal_price"`
+		CustomerLocale    string        `json:"customer_locale"`
+		DeviceId          interface{}   `json:"device_id"`
+		DiscountCodes     []interface{} `json:"discount_codes"`
+		Email             string        `json:"email"`
+		EstimatedTaxes    bool          `json:"estimated_taxes"`
+		FinancialStatus   string        `json:"financial_status"`
+		FulfillmentStatus interface{}   `json:"fulfillment_status"`
+		LandingSite       string        `json:"landing_site"`
+		LandingSiteRef    interface{}   `json:"landing_site_ref"`
+		LocationId        interface{}   `json:"location_id"`
+		Name              string        `json:"name"`
+		Note              string        `json:"note"`
+		NoteAttributes    []struct {
+			Name  string `json:"name"`
+			Value string `json:"value"`
+		} `json:"note_attributes"`
+		Number                 int         `json:"number"`
+		OrderNumber            int         `json:"order_number"`
+		OrderStatusUrl         string      `json:"order_status_url"`
+		OriginalTotalDutiesSet interface{} `json:"original_total_duties_set"`
+		PaymentGatewayNames    []string    `json:"payment_gateway_names"`
+		Phone                  interface{} `json:"phone"`
+		PresentmentCurrency    string      `json:"presentment_currency"`
+		ProcessedAt            time.Time   `json:"processed_at"`
+		ProcessingMethod       string      `json:"processing_method"`
+		Reference              interface{} `json:"reference"`
+		ReferringSite          string      `json:"referring_site"`
+		SourceIdentifier       interface{} `json:"source_identifier"`
+		SourceName             string      `json:"source_name"`
+		SourceUrl              interface{} `json:"source_url"`
+		SubtotalPrice          string      `json:"subtotal_price"`
 		SubtotalPriceSet       struct {
 			ShopMoney struct {
 				Amount       string `json:"amount"`
@@ -212,7 +215,7 @@ type OrderReturn struct {
 			State                     string        `json:"state"`
 			TotalSpent                string        `json:"total_spent"`
 			LastOrderId               int64         `json:"last_order_id"`
-			Note                      interface{}   `json:"note"`
+			Note                      string        `json:"note"`
 			VerifiedEmail             bool          `json:"verified_email"`
 			MultipassIdentifier       interface{}   `json:"multipass_identifier"`
 			TaxExempt                 bool          `json:"tax_exempt"`
