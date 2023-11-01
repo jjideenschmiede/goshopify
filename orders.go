@@ -93,8 +93,8 @@ type OrderReturn struct {
 		Name              string        `json:"name"`
 		Note              string        `json:"note"`
 		NoteAttributes    []struct {
-			Name  string `json:"name"`
-			Value string `json:"value"`
+			Name  string      `json:"name"`
+			Value interface{} `json:"value"`
 		} `json:"note_attributes"`
 		Number                 int         `json:"number"`
 		OrderNumber            int         `json:"order_number"`
@@ -282,8 +282,8 @@ type OrderReturn struct {
 			ProductExists bool  `json:"product_exists"`
 			ProductId     int64 `json:"product_id"`
 			Properties    []struct {
-				Name  string `json:"name"`
-				Value string `json:"value"`
+				Name  string      `json:"name"`
+				Value interface{} `json:"value"`
 			} `json:"properties"`
 			Quantity         int    `json:"quantity"`
 			RequiresShipping bool   `json:"requires_shipping"`
