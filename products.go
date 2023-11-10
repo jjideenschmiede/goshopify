@@ -15,17 +15,19 @@ type ProductBody struct {
 }
 
 type ProductBodyProduct struct {
-	Id          int                     `json:"id,omitempty"`
-	Title       string                  `json:"title,omitempty"`
-	BodyHtml    string                  `json:"body_html"`
-	Vendor      string                  `json:"vendor"`
-	ProductType string                  `json:"product_type,omitempty"`
-	Status      string                  `json:"status,omitempty"`
-	Tags        string                  `json:"tags,omitempty"`
-	Images      []ProductBodyImages     `json:"images,omitempty"`
-	Variants    []ProductBodyVariants   `json:"variants,omitempty"`
-	Options     []ProductBodyOptions    `json:"options,omitempty"`
-	Metafields  []ProductBodyMetafields `json:"metafields,omitempty"`
+	Id                             int                     `json:"id,omitempty"`
+	Title                          string                  `json:"title,omitempty"`
+	BodyHtml                       string                  `json:"body_html"`
+	Vendor                         string                  `json:"vendor"`
+	ProductType                    string                  `json:"product_type,omitempty"`
+	Status                         string                  `json:"status,omitempty"`
+	Tags                           string                  `json:"tags,omitempty"`
+	Images                         []ProductBodyImages     `json:"images,omitempty"`
+	Variants                       []ProductBodyVariants   `json:"variants,omitempty"`
+	Options                        []ProductBodyOptions    `json:"options,omitempty"`
+	Metafields                     []ProductBodyMetafields `json:"metafields,omitempty"`
+	MetafieldsGlobalTitleTag       string                  `json:"metafields_global_title_tag,omitempty"`
+	MetafieldsGlobalDescriptionTag string                  `json:"metafields_global_description_tag,omitempty"`
 }
 
 type ProductBodyImages struct {
