@@ -46,7 +46,7 @@ type ProductBodyVariants struct {
 	Option1             string                          `json:"option1,omitempty"`
 	Option2             string                          `json:"option2,omitempty"`
 	Option3             string                          `json:"option3,omitempty"`
-	Taxable             bool                            `json:"taxable,omitempty"`
+	Taxable             bool                            `json:"taxable"`
 	Barcode             string                          `json:"barcode"`
 	Grams               int                             `json:"grams"`
 	Weight              float64                         `json:"weight"`
