@@ -161,6 +161,7 @@ body := goshopify.ProductImageBody{
 	Image: ProductImageBodyImage{
 		Position:   1,
 		Src:        "https://cdn.jj-ideenschmiede.de/placeholder.png",
+        Alt:        "Test image",
 		VariantIds: []int{12345678},
     },
 }
