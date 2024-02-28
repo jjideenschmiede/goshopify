@@ -17,6 +17,7 @@ type ProductImageBody struct {
 type ProductImageBodyImage struct {
 	Position   int    `json:"position,omitempty"`
 	Src        string `json:"src"`
+	Alt        string `json:"alt,omitempty"`
 	VariantIds []int  `json:"variant_ids"`
 }
 
