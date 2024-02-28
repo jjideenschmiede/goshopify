@@ -31,8 +31,9 @@ type ProductBodyProduct struct {
 }
 
 type ProductBodyImages struct {
-	Src string `json:"src,omitempty"`
-	Alt string `json:"alt,omitempty"`
+	Position int    `json:"position,omitempty"`
+	Src      string `json:"src"`
+	Alt      string `json:"alt,omitempty"`
 }
 
 type ProductBodyVariants struct {
