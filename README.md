@@ -145,6 +145,35 @@ if err != nil {
 }
 ```
 
+## Create a product image
+
+If you want to add an image to a product, you can do so using the following function. The ID of the product is required.
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Define body
+body := goshopify.ProductImageBody{
+	Image: ProductImageBodyImage{
+		Position:   1,
+		Src:        "https://cdn.jj-ideenschmiede.de/placeholder.png",
+		VariantIds: []int{12345678},
+    },
+}
+
+// Add new product image
+productImage, err := goshopify.AddProductImage(6881118224568, body, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(productImage)
+}
+```
+
 ## Get a list of metafields for a product
 
 If you want to read out all metafields of a product, you can do this as follows. You need the ID of the product.
