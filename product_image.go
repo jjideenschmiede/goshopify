@@ -15,6 +15,7 @@ type ProductImageBody struct {
 }
 
 type ProductImageBodyImage struct {
+	Id         int    `json:"id,omitempty"`
 	Position   int    `json:"position,omitempty"`
 	Src        string `json:"src"`
 	Alt        string `json:"alt,omitempty"`
@@ -70,4 +71,23 @@ func AddProductImage(id int, body ProductImageBody, r Request) (ProductImageRetu
 	// Return data
 	return decode, err
 
+}
+
+// DeleteProductImage is to delete an image of a product
+func DeleteProductImage(productId, imageId int, r Request) error {
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/products/%d/images/%d.json", productId, imageId), http.MethodDelete, nil}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Return nothing
+	return nil
 }
