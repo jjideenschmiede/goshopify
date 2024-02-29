@@ -175,6 +175,24 @@ if err != nil {
 }
 ```
 
+## Delete a product image
+
+If you want to remove an image from a product, you can do so using the following function. You need the ID of the product and the ID of the image.
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Delete product image
+err := goshopify.DeleteProductImage(7384409964728, 43713916108984, r)
+if err != nil {
+    fmt.Println(err)
+}
+```
+
 ## Get a list of metafields for a product
 
 If you want to read out all metafields of a product, you can do this as follows. You need the ID of the product.
