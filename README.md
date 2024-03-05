@@ -364,6 +364,35 @@ if err != nil {
 }
 ```
 
+## Update a product variant price
+
+If you want to update the price of a product variant, you can do so using the following function.
+
+```go
+// Define request
+r := goshopify.Request{
+    StoreName:   "",
+    AccessToken: "",
+}
+
+// Define body
+body := ProductVariantPriceBody{
+    ProductVariantPriceBodyVariant{
+        Id:                  6917353078968,
+        Price:               "24,99",
+        CompareAtPrice:      "48,99",
+    },
+}
+
+// Update variant price
+variantPrice, err := goshopify.UpdateProductVariantPrice(body, r)
+if err != nil {
+    fmt.Println(err)
+} else {
+    fmt.Println(variantPrice)
+}
+```
+
 ## Get a list of metafields for a product variant
 
 If you want to read out all metafields of a product variant, you can do this as follows. 
