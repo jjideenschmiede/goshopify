@@ -99,6 +99,17 @@ type ProductVariantReturn struct {
 	Errors interface{} `json:"errors,omitempty"`
 }
 
+// ProductVariantPriceBody is to structure the data
+type ProductVariantPriceBody struct {
+	Variant ProductVariantPriceBodyVariant `json:"variant"`
+}
+
+type ProductVariantPriceBodyVariant struct {
+	Id             int    `json:"id"`
+	Price          string `json:"price"`
+	CompareAtPrice string `json:"compare_at_price,omitempty"`
+}
+
 // ProductVariantMetafieldsReturn is to decode the json data
 type ProductVariantMetafieldsReturn struct {
 	Metafields []struct {
@@ -230,6 +241,40 @@ func DeleteVariant(productId, variantId int, r Request) error {
 
 	// Return nothing
 	return nil
+
+}
+
+// UpdateProductVariantPrice is to update the inventory quantity of a product variant
+func UpdateProductVariantPrice(body ProductVariantPriceBody, r Request) (ProductVariantReturn, error) {
+
+	// Convert body
+	convert, err := json.Marshal(body)
+	if err != nil {
+		return ProductVariantReturn{}, err
+	}
+
+	// Set config for new request
+	c := Config{fmt.Sprintf("/variants/%d.json", body.Variant.Id), http.MethodPut, convert}
+
+	// Send request
+	response, err := c.Send(r)
+	if err != nil {
+		return ProductVariantReturn{}, err
+	}
+
+	// Close request
+	defer response.Body.Close()
+
+	// Decode data
+	var decode ProductVariantReturn
+
+	err = json.NewDecoder(response.Body).Decode(&decode)
+	if err != nil {
+		return ProductVariantReturn{}, err
+	}
+
+	// Return data
+	return decode, err
 
 }
 
