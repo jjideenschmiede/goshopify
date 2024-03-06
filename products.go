@@ -38,7 +38,7 @@ type ProductBodyImages struct {
 
 type ProductBodyVariants struct {
 	Title               string                          `json:"title,omitempty"`
-	Price               string                          `json:"price,omitempty"`
+	Price               string                          `json:"price"`
 	Sku                 string                          `json:"sku,omitempty"`
 	CompareAtPrice      string                          `json:"compare_at_price"`
 	FulfillmentService  string                          `json:"fulfillment_service,omitempty"`
