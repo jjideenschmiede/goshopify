@@ -87,7 +87,7 @@ type ProductVariantReturn struct {
 		Taxable              bool      `json:"taxable"`
 		Barcode              string    `json:"barcode"`
 		Grams                int       `json:"grams"`
-		ImageId              string    `json:"image_id"`
+		ImageId              int       `json:"image_id"`
 		Weight               float64   `json:"weight"`
 		WeightUnit           string    `json:"weight_unit"`
 		InventoryItemId      int       `json:"inventory_item_id"`
