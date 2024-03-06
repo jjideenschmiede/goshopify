@@ -17,9 +17,9 @@ type ProductVariantBody struct {
 type ProductVariantBodyVariant struct {
 	Id                  int     `json:"id,omitempty"`
 	Title               string  `json:"title,omitempty"`
-	Price               string  `json:"price,omitempty"`
+	Price               string  `json:"price"`
 	Sku                 string  `json:"sku,omitempty"`
-	CompareAtPrice      string  `json:"compare_at_price,omitempty"`
+	CompareAtPrice      string  `json:"compare_at_price"`
 	FulfillmentService  string  `json:"fulfillment_service,omitempty"`
 	InventoryManagement string  `json:"inventory_management,omitempty"`
 	Option1             string  `json:"option1,omitempty"`
@@ -107,7 +107,7 @@ type ProductVariantPriceBody struct {
 type ProductVariantPriceBodyVariant struct {
 	Id             int    `json:"id"`
 	Price          string `json:"price"`
-	CompareAtPrice string `json:"compare_at_price,omitempty"`
+	CompareAtPrice string `json:"compare_at_price"`
 }
 
 // ProductVariantMetafieldsReturn is to decode the json data
