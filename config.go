@@ -10,7 +10,7 @@ import (
 const (
 	transferProtocol = "https://"
 	baseUrl          = ".myshopify.com/admin/api/"
-	apiVersion       = "2024-04"
+	apiVersion       = "2024-01"
 )
 
 // Config is to define config data
