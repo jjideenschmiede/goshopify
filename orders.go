@@ -20,7 +20,7 @@ type OrderReturn struct {
 		CancelReason          interface{} `json:"cancel_reason"`
 		CancelledAt           interface{} `json:"cancelled_at"`
 		CartToken             string      `json:"cart_token"`
-		CheckoutId            int64       `json:"checkout_id"`
+		CheckoutId            int         `json:"checkout_id"`
 		CheckoutToken         string      `json:"checkout_token"`
 		ClientDetails         struct {
 			AcceptLanguage string      `json:"accept_language"`
@@ -31,6 +31,7 @@ type OrderReturn struct {
 			UserAgent      string      `json:"user_agent"`
 		} `json:"client_details"`
 		ClosedAt                interface{} `json:"closed_at"`
+		ConfirmationNumber      string      `json:"confirmation_number"`
 		Confirmed               bool        `json:"confirmed"`
 		ContactEmail            string      `json:"contact_email"`
 		CreatedAt               time.Time   `json:"created_at"`
