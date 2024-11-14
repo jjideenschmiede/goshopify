@@ -81,18 +81,22 @@ type OrderReturn struct {
 				CurrencyCode string `json:"currency_code"`
 			} `json:"presentment_money"`
 		} `json:"current_total_tax_set"`
-		CustomerLocale    string        `json:"customer_locale"`
-		DeviceId          interface{}   `json:"device_id"`
-		DiscountCodes     []interface{} `json:"discount_codes"`
-		Email             string        `json:"email"`
-		EstimatedTaxes    bool          `json:"estimated_taxes"`
-		FinancialStatus   string        `json:"financial_status"`
-		FulfillmentStatus interface{}   `json:"fulfillment_status"`
-		LandingSite       string        `json:"landing_site"`
-		LandingSiteRef    interface{}   `json:"landing_site_ref"`
-		LocationId        interface{}   `json:"location_id"`
-		Name              string        `json:"name"`
-		Note              string        `json:"note"`
+		CustomerLocale string      `json:"customer_locale"`
+		DeviceId       interface{} `json:"device_id"`
+		DiscountCodes  []struct {
+			Code   string `json:"code"`
+			Amount string `json:"amount"`
+			Type   string `json:"type"`
+		} `json:"discount_codes"`
+		Email             string      `json:"email"`
+		EstimatedTaxes    bool        `json:"estimated_taxes"`
+		FinancialStatus   string      `json:"financial_status"`
+		FulfillmentStatus interface{} `json:"fulfillment_status"`
+		LandingSite       string      `json:"landing_site"`
+		LandingSiteRef    interface{} `json:"landing_site_ref"`
+		LocationId        interface{} `json:"location_id"`
+		Name              string      `json:"name"`
+		Note              string      `json:"note"`
 		NoteAttributes    []struct {
 			Name  string      `json:"name"`
 			Value interface{} `json:"value"`
